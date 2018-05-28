@@ -1,0 +1,11 @@
+<div class="header">
+  <div class="header-item">
+    <button
+      class="start-stop-button"
+      mat-raised-button color="accent"
+      (click)="btnClick();"
+    >
+      {{this.dataService.testState.isTestStarted ? "Stop test" : this.dataService.testState.isTestComplete ? "New test" : "Start test"}}
+    </button>
+  </div>
+</div>

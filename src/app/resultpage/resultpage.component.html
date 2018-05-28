@@ -1,0 +1,47 @@
+<mat-card>
+
+  <h1>
+    {{this.dataService.testState.y}}x test completed
+  </h1>
+
+  <p>
+    <!-- <i class="material-icons" *ngIf="this.isNewRecordTime" style="color: #ff6c00;">whatshot</i> -->
+    <mat-icon *ngIf="this.isNewRecordTime" style="color: #ff6c00;" svgIcon="hot"></mat-icon>
+    Time: {{this.dataService.testState.finalMilliSeconds|minuteSeconds}}s
+  </p>
+
+  <p *ngIf="!this.isFirstAttempt">
+    Your previous best time was {{this.previousBestTime|minuteSeconds}}s
+  </p>
+
+  <p>
+    Accuracy: {{ this.accuracyPercentage | number:'1.0-2' }} %
+  </p>
+
+  <div *ngIf="this.accuracyPercentage < 100">
+    <p>
+      Number of incorrect answers: {{this.dataService.testState.incorrectX.length}}
+    </p>
+  </div>
+
+  <!-- <p>
+    Total number of tests: {{this.totalResults}}
+  </p>
+
+  <p>
+    Total number of {{this.dataService.testState.y}}x tests: {{this.totalResultsOfThisType}}
+  </p> -->
+
+  <div style="display: block;" *ngIf="!this.isFirstAttempt && testTimeArray.length > 0">
+    <!-- <canvas baseChart width="400" height="400"
+      [datasets]="testTimeArray"
+      [labels]="testLabelArray"
+      [options]="lineChartOptions"
+      [colors]="lineChartColors"
+      [legend]="lineChartLegend"
+      [chartType]="lineChartType">
+    </canvas> -->
+    <ngx-line-chart [dataSets]="testTimeArray" [style]="chartStyle"></ngx-line-chart>
+  </div>
+
+</mat-card>

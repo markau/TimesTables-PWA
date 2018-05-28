@@ -1,0 +1,91 @@
+<mat-card class="question-display-container">
+        <div class="question-display-item">
+                <!-- <div style="width: 70%; float: left;">
+                        {{this.dataService.testState.x}} x {{this.dataService.testState.y}} =
+                </div>
+                <div style="width: 30%; text-align: left;">
+                        {{this.dataService.testState.answerBuffer}}
+                </div> -->
+                <span>
+                        {{this.dataService.testState.x}} x {{this.dataService.testState.y}} = {{this.dataService.testState.answerBuffer}}
+                </span>
+        </div>
+</mat-card>
+
+
+<!-- <div class="flex-container"> -->
+<mat-card class="keypad-container">
+        <div class="keypad-item keypad-item-01">
+                <button mat-raised-button color="primary" (click)="btnClick(1);">1</button>
+        </div>
+
+        <div class="keypad-item keypad-item-02">
+                <button mat-raised-button primary color="primary" (click)="btnClick(2);">2</button>
+        </div>
+
+        <div class="keypad-item keypad-item-03">
+                <button mat-raised-button color="primary" (click)="btnClick(3);">3</button>
+        </div>
+
+        <div class="keypad-item keypad-item-04">
+                <button mat-raised-button color="primary" (click)="btnClick(4);">4</button>
+        </div>
+
+        <div class="keypad-item keypad-item-05">
+                <button mat-raised-button color="primary" (click)="btnClick(5);">5</button>
+        </div>
+
+        <div class="keypad-item keypad-item-06">
+                <button mat-raised-button color="primary" (click)="btnClick(6);">6</button>
+        </div>
+
+        <div class="keypad-item keypad-item-07">
+                <button mat-raised-button color="primary" (click)="btnClick(7);">7</button>
+        </div>
+
+        <div class="keypad-item keypad-item-08">
+                <button mat-raised-button color="primary" (click)="btnClick(8);">8</button>
+        </div>
+
+        <div class="keypad-item keypad-item-09">
+                <button mat-raised-button color="primary" (click)="btnClick(9);">9</button>
+        </div>
+
+        <div class="keypad-item">
+                <button mat-raised-button color="primary" (click)="btnClick('del');">
+                        <!-- <md-icon md-svg-icon="social:android" aria-label="android "></md-icon> -->
+                        <!-- <i class="material-icons icon-button">arrow_back</i> -->
+                        <mat-icon svgIcon="backspace"></mat-icon>
+                </button>
+        </div>
+
+        <div class="keypad-item">
+                <button mat-raised-button color="primary" (click)="btnClick(0);">0</button>
+        </div>
+
+        <div class="keypad-item">
+                <button mat-raised-button color="accent" (click)="btnClick('enter');">
+                        <mat-icon svgIcon="checkmark-outline"></mat-icon>
+                        <!-- <i class="material-icons icon-button">check</i> -->
+                        <!-- <img style="width: 24px; height: 24px; fill: #fff;" src="../../assets/checkmark-outline.svg" /> -->
+                </button>
+        </div>
+</mat-card>
+
+<!-- </div> -->
+
+<!-- <div> -->
+<mat-card class="timer-container">
+        <div class="timer-item">
+                <div style="display: flex; justify-content: left; align-items: center; width: 100px;">
+                        <!-- <i class="material-icons">access_time</i> -->
+                        <mat-icon svgIcon="timer"></mat-icon>
+                        <span class="timer-text">{{this.dataService.testState.elapsedMilliSeconds | minuteSeconds : false : true }}</span>
+                </div>
+        </div>
+        <div class="timer-item">
+                <span class="question-number-text">{{this.dataService.testState.completedX.length + 1}} / 12</span>
+        </div>
+
+</mat-card>
+<!-- </div> -->

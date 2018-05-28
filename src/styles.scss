@@ -1,0 +1,253 @@
+
+// @import "~normalize.css/normalize.css";
+
+// @import "~@angular/material/prebuilt-themes/deeppurple-amber.css";
+
+@import '~@angular/material/theming';
+// always include only once per project
+@include mat-core();
+// import our custom theme
+@import './theme/timestables-theme.scss';
+
+// specify theme class eg: <body class="timestables-theme"> ... </body>
+.timestables-theme {
+  // use our theme with angular-material-theme mixin
+  @include angular-material-theme($timestables-theme);
+}
+
+
+
+
+body {
+  padding: 1em;
+  margin: 0;
+  font-family: Roboto, sans-serif;
+  // height: 100vh;
+  height: calc(100vh - 74px);
+  box-sizing: border-box;
+  margin: 0 auto;
+  background-color: #e2e2f1;
+}
+
+@media all and (display-mode: standalone) {
+  body {
+    height: 100vh;
+  }
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+@media (min-height: 1024px) {
+  main {
+    max-width: 700px;
+  }
+}
+
+@media (min-height: 1366px) {
+  main {
+    max-width: 800px;
+  }
+}
+
+@media (max-height: 568px) {
+  .mat-raised-button {
+    min-width: 76px !important;
+  }
+}
+
+.mat-radio-outer-circle {
+  border-radius: 0 !important;
+}
+.mat-radio-inner-circle {
+  border-radius: 0 !important;
+}
+
+app-testcontrol {
+  display: flex;
+  margin: 0 0 1em 0;
+}
+
+app-testpage {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  // height: 10%;
+  flex-grow: 1;
+}
+
+.header-item {
+  display: flex;
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: center;
+  flex-grow: 1;
+}
+
+mat-card {
+  margin: 0.35em 0 0.35em 0;
+  text-align: center;
+}
+
+// 2 x 2 = ?
+.question-display-container {
+  display: flex !important;
+  flex-direction: row;
+  height: 15%;
+  // height: 3em;
+
+  .question-display-item {
+    display: flex;
+    box-sizing: border-box;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1;
+    font-size: 3em;
+
+    transition-property: border-color;
+    transition-duration: 280ms;
+    transition-timing-function: ease;
+    transition-delay: initial;
+
+  }
+}
+
+
+
+// @media (min-width: 375px) {
+//   .content-item {
+//     font-size: 4.5em;
+//   }
+// }
+
+// @media (min-width: 414px) {
+//   .content-item {
+//     font-size: 5em;
+//   }
+// }
+
+// @media (min-width: 768px) {
+//   .content-item {
+//     font-size: 6em;
+//   }
+// }
+
+.keypad-container {
+  display: flex !important;
+  flex-wrap: wrap;
+  height: 100%;
+  flex-grow: 1;
+
+  .keypad-item {
+    display: flex;
+    color: #fff;
+    box-sizing: border-box;
+    font-size: 1.2em;
+    padding: 0.5em;
+    opacity: 0.8;
+    width: 33.33333%;
+    align-items: center;
+    justify-content: center;
+    object-fit: contain;
+
+    button {
+      width: 100%;
+      height: 100%;
+    }
+  }
+}
+
+
+
+.timer-container {
+  display: flex !important;
+  flex-direction: row;
+  height: 2%;
+  // height: 0.5em;
+
+  .timer-item {
+    display: flex;
+    box-sizing: border-box;
+    font-size: 1.2em;
+    width: 50%;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+
+
+.material-icons {
+  vertical-align: middle;
+}
+
+.timer-text {
+  margin-left: 0.25em;
+}
+// .question-number-text {
+
+// }
+
+
+
+.mat-fab {
+  width: 75% !important;
+  max-width: 80px !important;
+  height: 75% !important;
+  max-height: 80px !important;
+  font-size: 17px;
+}
+
+// @media (min-width: 375px) {
+//   .mat-fab {
+//     max-width: 80% !important;
+//     max-height: 80% !important;
+//     font-size: 22px;
+//   }
+// }
+
+// @media (min-height: 750px) {
+//   .mat-fab {
+//     max-width: 75% !important;
+//     max-height: 70% !important;
+//   }
+// }
+
+// @media (min-height: 750px) and (min-width: 375px) {
+//   .mat-fab {
+//     max-width: 80% !important;
+//     max-height: 75% !important;
+//   }
+// }
+
+
+.icon-button {
+  font-size: 1.25em;
+}
+
+.checkbox-container {
+  display: flex;
+  flex-direction: column;
+}
+.checkbox-row {
+  display: flex;
+  flex-direction: row;
+}
+.checkbox-item {
+  display: flex;
+  width: 33.333333%;
+  height: 3em;
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: center;
+}/* You can add global styles to this file, and also import other style files */

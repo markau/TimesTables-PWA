@@ -1,0 +1,13 @@
+// define 3 theme color
+// mat-palette accepts $palette-name, main, lighter and darker variants
+$timestables-theme-primary: mat-palette($mat-blue, 700, 300, 900);
+// $timestables-theme-accent: mat-palette($mat-deep-orange, A200);
+$timestables-theme-accent: mat-palette($mat-purple, 600);
+$timestables-theme-warn: mat-palette($mat-deep-orange, A200);
+
+// create theme (use mat-dark-theme for themes with dark backgrounds)
+$timestables-theme: mat-light-theme(
+    $timestables-theme-primary,
+    $timestables-theme-accent,
+    $timestables-theme-warn
+);
