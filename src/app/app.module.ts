@@ -25,8 +25,7 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { MinuteSecondsPipe } from "./minute-seconds.pipe";
 
-// import { ChartsModule } from "ng2-charts/ng2-charts";
-import { NgxLineChartModule } from "ngx-line-chart";
+import { NgxLineChartModule } from "../../ngx-line-chart";
 
 const appRoutes: Routes = [
   { path: "", component: TestsetupComponent },
@@ -57,7 +56,6 @@ const appRoutes: Routes = [
     MatRadioModule,
     MatCardModule,
     MatSnackBarModule,
-    // ChartsModule,
     NgxLineChartModule,
     MatIconModule,
     HttpClientModule,

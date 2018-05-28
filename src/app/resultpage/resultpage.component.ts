@@ -36,7 +36,7 @@ export class ResultpageComponent implements OnInit {
   public accuracyPercentage = 0;
 
   public testTimeArray: Array<any> = [
-    { name: `${this.dataService.testState.y}x times`, points: [] }
+    { name: `${this.dataService.testState.y}x results (seconds)`, points: [] }
   ];
 
   public chartStyle = {
@@ -53,7 +53,7 @@ export class ResultpageComponent implements OnInit {
           },
           yAxis: {
             color: "rgba(18,159,177, 1.0)",
-            fontSize: 18
+            fontSize: 20
           }
         },
         line: {
@@ -116,6 +116,7 @@ export class ResultpageComponent implements OnInit {
           resultObject.finalMilliSeconds < this.previousBestTime;
       }
 
+      // Save this result to local storage
       currentStore.push(resultObject);
 
       this.localStorage.setItem("testResults", currentStore).subscribe(
@@ -145,6 +146,7 @@ export class ResultpageComponent implements OnInit {
           y: minSecPipe.transform(element.finalMilliSeconds)
         })
       );
+
     });
   };
 }

@@ -1,6 +1,6 @@
 {
-  "name": "ttt",
-  "short_name": "ttt",
+  "name": "Times Tables",
+  "short_name": "Times Tables",
   "theme_color": "#1976d2",
   "background_color": "#fafafa",
   "display": "standalone",

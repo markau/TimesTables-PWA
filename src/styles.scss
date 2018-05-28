@@ -22,18 +22,18 @@ body {
   padding: 1em;
   margin: 0;
   font-family: Roboto, sans-serif;
-  // height: 100vh;
-  height: calc(100vh - 74px);
+  height: 100vh;
+  // height: calc(100vh - 74px);
   box-sizing: border-box;
   margin: 0 auto;
-  background-color: #e2e2f1;
+  background-color: hsla(240, 35, 97, 1);
 }
 
-@media all and (display-mode: standalone) {
-  body {
-    height: 100vh;
-  }
-}
+// @media all and (display-mode: standalone) {
+//   body {
+//     height: 100vh;
+//   }
+// }
 
 main {
   display: flex;
