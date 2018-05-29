@@ -70,13 +70,14 @@ main {
 
 app-testcontrol {
   display: flex;
-  margin: 0 0 1em 0;
+  margin: 0 0 0.75em 0;
 }
 
 app-testpage {
   display: flex;
   flex-direction: column;
-  flex-grow: 1
+  flex-grow: 1;
+  height: 100%;
 }
 
 .header {
@@ -97,11 +98,13 @@ app-testpage {
 mat-card {
   margin: 0.35em 0 0.35em 0;
   text-align: center;
+  display: flex !important;
+  padding: 15px !important;
 }
 
 // 2 x 2 = ?
 .question-display-container {
-  display: flex !important;
+  display: flex;
   flex-direction: row;
   height: 15%;
   // height: 3em;
@@ -143,7 +146,7 @@ mat-card {
 // }
 
 .keypad-container {
-  display: flex !important;
+  display: flex;
   flex-wrap: wrap;
   height: 100%;
   flex-grow: 1;
@@ -170,9 +173,9 @@ mat-card {
 
 
 .timer-container {
-  display: flex !important;
+  display: flex;
   flex-direction: row;
-  height: 2%;
+  height: 5%;
   // height: 0.5em;
 
   .timer-item {
