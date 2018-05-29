@@ -207,6 +207,7 @@ mat-card {
 .checkbox-row {
   display: flex;
   flex-direction: row;
+  margin-left: 2em;
 }
 .checkbox-item {
   display: flex;
@@ -214,13 +215,14 @@ mat-card {
   height: 3em;
   box-sizing: border-box;
   align-items: center;
-  justify-content: center;
+  justify-content: left;
 }
 
 
 .resultpage-container {
   display: flex;
   flex-direction: column;
+  width: 100%;
 }
 
 .form-group {
