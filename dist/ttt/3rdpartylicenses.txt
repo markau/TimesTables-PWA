@@ -314,10 +314,6 @@ MIT
 MIT
 MIT
 
-ngx-line-chart@1.0.0
-MIT
-MIT
-
 deepmerge@1.5.2
 MIT
 The MIT License (MIT)

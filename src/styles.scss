@@ -1,12 +1,9 @@
 
 // @import "~normalize.css/normalize.css";
 
-// @import "~@angular/material/prebuilt-themes/deeppurple-amber.css";
-
+// Custom theme
 @import '~@angular/material/theming';
-// always include only once per project
 @include mat-core();
-// import our custom theme
 @import './theme/timestables-theme.scss';
 
 // specify theme class eg: <body class="timestables-theme"> ... </body>
@@ -16,24 +13,21 @@
 }
 
 
-
-
 body {
   padding: 1em;
   margin: 0;
   font-family: Roboto, sans-serif;
-  height: 100vh;
-  // height: calc(100vh - 74px);
+  height: calc(100vh - 74px); // to allow for the url bar in chrome
   box-sizing: border-box;
   margin: 0 auto;
-  background-color: hsla(240, 35, 97, 1);
+  background-color: hsla(227, 20, 92, 1);
 }
 
-// @media all and (display-mode: standalone) {
-//   body {
-//     height: 100vh;
-//   }
-// }
+@media all and (display-mode: standalone) {
+  body {
+    height: 100vh; // once installed, there is no url bar, so use 100vh
+  }
+}
 
 main {
   display: flex;
@@ -70,10 +64,10 @@ main {
 
 app-testcontrol {
   display: flex;
-  margin: 0 0 0.75em 0;
+  margin: 0 0 1em 0;
 }
 
-app-testpage {
+app-testpage, app-testsetup, app-resultpage {
   display: flex;
   flex-direction: column;
   flex-grow: 1;
@@ -83,7 +77,7 @@ app-testpage {
 .header {
   display: flex;
   flex-direction: row;
-  // height: 10%;
+  height: 100%;
   flex-grow: 1;
 }
 
@@ -202,38 +196,6 @@ mat-card {
 // }
 
 
-
-.mat-fab {
-  width: 75% !important;
-  max-width: 80px !important;
-  height: 75% !important;
-  max-height: 80px !important;
-  font-size: 17px;
-}
-
-// @media (min-width: 375px) {
-//   .mat-fab {
-//     max-width: 80% !important;
-//     max-height: 80% !important;
-//     font-size: 22px;
-//   }
-// }
-
-// @media (min-height: 750px) {
-//   .mat-fab {
-//     max-width: 75% !important;
-//     max-height: 70% !important;
-//   }
-// }
-
-// @media (min-height: 750px) and (min-width: 375px) {
-//   .mat-fab {
-//     max-width: 80% !important;
-//     max-height: 75% !important;
-//   }
-// }
-
-
 .icon-button {
   font-size: 1.25em;
 }
@@ -253,4 +215,14 @@ mat-card {
   box-sizing: border-box;
   align-items: center;
   justify-content: center;
-}/* You can add global styles to this file, and also import other style files */
+}
+
+
+.resultpage-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group {
+  width: 100%;
+}
