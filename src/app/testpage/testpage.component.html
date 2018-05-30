@@ -1,26 +1,18 @@
 <mat-card class="question-display-container">
-        <div class="question-display-item">
-                <!-- <div style="width: 70%; float: left;">
+        <div>
                         {{this.dataService.testState.x}} x {{this.dataService.testState.y}} =
+
                 </div>
-                <div style="width: 30%; text-align: left;">
-                        {{this.dataService.testState.answerBuffer}}
-                </div> -->
-                <span>
-                        {{this.dataService.testState.x}} x {{this.dataService.testState.y}} =
-                </span>
+
                 <div class="answer-container">
-                                <span class="answer">
-                                                {{this.dataService.testState.answerBuffer}}
-                                </span>
-                                <span class="test-feedback-icon" [ngClass]="{'test-feedback-icon-animation-correct': this.showCorrectAnimation, 'test-feedback-icon-animation-incorrect': this.showIncorrectAnimation }"></span>
-                                </div>
+                        <span class="answer">
+                                {{this.dataService.testState.answerBuffer}}
+                        </span>
+                        <span class="test-feedback-icon" [ngClass]="{'test-feedback-icon-animation-correct': this.showCorrectAnimation, 'test-feedback-icon-animation-incorrect': this.showIncorrectAnimation }"></span>
+                </div>
 
-        </div>
-</mat-card>
+ </mat-card>
 
-
-<!-- <div class="flex-container"> -->
 <mat-card class="keypad-container">
         <div class="keypad-item keypad-item-01">
                 <button mat-raised-button color="primary" (click)="btnClick(1);">1</button>
@@ -79,9 +71,6 @@
         </div>
 </mat-card>
 
-<!-- </div> -->
-
-<!-- <div> -->
 <mat-card class="timer-container">
         <div class="timer-item">
                 <div style="display: flex; justify-content: left; align-items: center; width: 100px;">
@@ -95,4 +84,3 @@
         </div>
 
 </mat-card>
-<!-- </div> -->
