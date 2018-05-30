@@ -10,7 +10,7 @@ import { ResultpageComponent } from "./resultpage/resultpage.component";
 
 import { environment } from "../environments/environment";
 
-import { MatToolbarModule, MatSnackBarModule } from "@angular/material";
+import { MatToolbarModule, MatSnackBarModule, MatTable } from "@angular/material";
 import { MatButtonModule } from "@angular/material";
 import { MatRadioModule } from "@angular/material/radio";
 import { MatCardModule } from "@angular/material/card";
@@ -25,7 +25,7 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { MinuteSecondsPipe } from "./minute-seconds.pipe";
 
-import { NgxLineChartModule } from "../../ngx-line-chart";
+// import { NgxLineChartModule } from "../../ngx-line-chart";
 
 const appRoutes: Routes = [
   { path: "", component: TestsetupComponent },
@@ -56,7 +56,7 @@ const appRoutes: Routes = [
     MatRadioModule,
     MatCardModule,
     MatSnackBarModule,
-    NgxLineChartModule,
+    // NgxLineChartModule,
     MatIconModule,
     HttpClientModule,
     ServiceWorkerModule.register("/ngsw-worker.js", {

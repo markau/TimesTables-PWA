@@ -1,40 +1,61 @@
 <mat-card>
-<div class="resultpage-container">
-  <h1>
-    {{this.dataService.testState.y}}x test completed
-  </h1>
+  <div class="resultpage-container">
 
-  <p>
-    <!-- <i class="material-icons" *ngIf="this.isNewRecordTime" style="color: #ff6c00;">whatshot</i> -->
-    <mat-icon *ngIf="this.isNewRecordTime" style="color: #ff6c00;" svgIcon="hot"></mat-icon>
-    Time: {{this.dataService.testState.finalMilliSeconds|minuteSeconds}}s
-  </p>
+    <div style="margin: 1.5em; font-weight: 600;">
+      {{this.dataService.testState.y}}x test completed
+    </div>
 
-  <p *ngIf="!this.isFirstAttempt">
-    Your previous best time was {{this.previousBestTime|minuteSeconds}}s
-  </p>
+    <div class="mat-table">
 
-  <p>
-    Accuracy: {{ this.accuracyPercentage | number:'1.0-2' }} %
-  </p>
+      <!-- Best time -->
+      <div class="mat-row">
+        <div class="mat-cell">Time:</div>
+        <div class="mat-cell">
+          <div style="display: flex; align-content: center; justify-content: center;">
+            <mat-icon *ngIf="this.isNewRecordTime" style="color: #ff6c00; margin-right: 5px;" svgIcon="hot"></mat-icon>
+            <div style="align-self: center;">{{this.dataService.testState.finalMilliSeconds|minuteSeconds}}s</div>
+          </div>
+        </div>
+      </div>
 
-  <div *ngIf="this.accuracyPercentage < 100">
-    <p>
-      Number of incorrect answers: {{this.dataService.testState.incorrectX.length}}
-    </p>
-  </div>
+      <!-- Previous best time -->
+      <div class="mat-row" *ngIf="!this.isFirstAttempt">
+        <div class="mat-cell">Previous best time:</div>
+        <div class="mat-cell">
+          {{this.previousBestTime|minuteSeconds}}s
+        </div>
+      </div>
 
-  <!-- <p>
-    Total number of tests: {{this.totalResults}}
-  </p>
+      <!-- Accuracy -->
+      <div class="mat-row">
+        <div class="mat-cell">Accuracy:</div>
+        <div class="mat-cell">
+          {{ this.accuracyPercentage | number:'1.0-2' }} %
+        </div>
+      </div>
 
-  <p>
-    Total number of {{this.dataService.testState.y}}x tests: {{this.totalResultsOfThisType}}
-  </p> -->
+      <!-- Accuracy -->
+      <div class="mat-row" *ngIf="this.accuracyPercentage < 100">
+        <div class="mat-cell">Number incorrect:</div>
+        <div class="mat-cell">
+          {{this.dataService.testState.incorrectX.length}}
+        </div>
+      </div>
 
-  <div style="display: block;" *ngIf="!this.isFirstAttempt && testTimeArray.length > 0">
+      <!-- Accuracy -->
+      <div class="mat-row" *ngIf="this.accuracyPercentage < 100">
+        <div class="mat-cell">Wrong answers:</div>
+        <div class="mat-cell">
+          {{this.wrongAnswers}}
+        </div>
+      </div>
+
+    </div>
+
+    <!-- <div style="display: block;" *ngIf="!this.isFirstAttempt && testTimeArray.length > 0">
     <ngx-line-chart [dataSets]="testTimeArray" [style]="chartStyle"></ngx-line-chart>
+  </div> -->
+
   </div>
-</div>
 
 </mat-card>
