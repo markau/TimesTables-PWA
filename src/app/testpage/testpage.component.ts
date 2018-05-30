@@ -57,7 +57,7 @@ export class TestpageComponent implements OnInit, OnDestroy {
       setTimeout(() => {
         this.showCorrectAnimation = false;
         this.showIncorrectAnimation = false;
-      }, 1000);
+      }, 500);
 
       // Change navigation if test complete
       if (this.dataService.testState.isTestComplete) {

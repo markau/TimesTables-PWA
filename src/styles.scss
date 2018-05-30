@@ -109,13 +109,7 @@ mat-card {
     align-items: center;
     justify-content: center;
     flex-grow: 1;
-    font-size: 3em;
-
-    transition-property: border-color;
-    transition-duration: 280ms;
-    transition-timing-function: ease;
-    transition-delay: initial;
-
+    font-size: 2.5em;
   }
 }
 
@@ -254,11 +248,10 @@ mat-card {
 
 
 .answer-container {
-  width: 30%;
+  width: 40%;
   text-align: center;
   .answer {
-      font-size: 32px;
-      // text-align: center;
+      // font-size: 32px;
       -webkit-transition:0.25s ease;
       transition:0.25s ease;
       display: inline-block;
@@ -266,7 +259,7 @@ mat-card {
 
   // Feedback icon animation
   .test-feedback-icon {
-      font-size: 30px;
+      // font-size: 30px;
       -webkit-transition:0.60s ease;
       transition:0.60s ease;
       display: inline-block;
