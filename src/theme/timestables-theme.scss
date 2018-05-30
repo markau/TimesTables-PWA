@@ -1,8 +1,56 @@
 // define 3 theme color
+
+/* For use in src/lib/core/theming/_palette.scss */
+$md-mcgpalette0: (
+    50 : #e3f1f1,
+    100 : #badddd,
+    200 : #8cc6c6,
+    300 : #5eafaf,
+    400 : #3c9d9d,
+    500 : #198c8c,
+    600 : #168484,
+    700 : #127979,
+    800 : #0e6f6f,
+    900 : #085c5c,
+    A100 : #8fffff,
+    A200 : #5cffff,
+    A400 : #29ffff,
+    A700 : #0fffff,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #ffffff,
+        500 : #ffffff,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+
+
+// Theme generator:
+
+// http://mcg.mbitson.com/
+
+
+
+
+
+
+
+
+
 // mat-palette accepts $palette-name, main, lighter and darker variants
 $timestables-theme-primary: mat-palette($mat-blue, 700, 300, 900);
 // $timestables-theme-accent: mat-palette($mat-deep-orange, A200);
-$timestables-theme-accent: mat-palette($mat-purple, 600);
+$timestables-theme-accent: mat-palette($md-mcgpalette0, 600);
 $timestables-theme-warn: mat-palette($mat-deep-orange, A200);
 
 // create theme (use mat-dark-theme for themes with dark backgrounds)

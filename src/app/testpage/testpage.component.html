@@ -1,17 +1,17 @@
 <mat-card class="question-display-container">
-        <div>
-                        {{this.dataService.testState.x}} x {{this.dataService.testState.y}} =
+        <div class="question-text">
+                {{this.dataService.testState.x}} x {{this.dataService.testState.y}} =
 
-                </div>
+        </div>
 
-                <div class="answer-container">
-                        <span class="answer">
-                                {{this.dataService.testState.answerBuffer}}
-                        </span>
-                        <span class="test-feedback-icon" [ngClass]="{'test-feedback-icon-animation-correct': this.showCorrectAnimation, 'test-feedback-icon-animation-incorrect': this.showIncorrectAnimation }"></span>
-                </div>
+        <div class="answer-container">
+                <span class="answer">
+                        {{this.dataService.testState.answerBuffer}}
+                </span>
+                <span class="test-feedback-icon" [ngClass]="{'test-feedback-icon-animation-correct': this.showCorrectAnimation, 'test-feedback-icon-animation-incorrect': this.showIncorrectAnimation }"></span>
+        </div>
 
- </mat-card>
+</mat-card>
 
 <mat-card class="keypad-container">
         <div class="keypad-item keypad-item-01">
@@ -72,15 +72,30 @@
 </mat-card>
 
 <mat-card class="timer-container">
-        <div class="timer-item">
+        <!-- <div class="timer-item">
                 <div style="display: flex; justify-content: left; align-items: center; width: 100px;">
-                        <!-- <i class="material-icons">access_time</i> -->
                         <mat-icon svgIcon="timer"></mat-icon>
                         <span class="timer-text">{{this.dataService.testState.elapsedMilliSeconds | minuteSeconds : false : true }}</span>
                 </div>
         </div>
+
         <div class="timer-item">
                 <span class="question-number-text">{{this.dataService.testState.completedX.length + 1}} / 12</span>
+        </div> -->
+
+        <div class="timer-item">
+                <div style="display: flex; align-content: center; justify-content: center;">
+                        <mat-icon style="margin-right: 7px;" svgIcon="timer"></mat-icon>
+                        <div class="timer-text">{{this.dataService.testState.elapsedMilliSeconds | minuteSeconds : false : true }}</div>
+                </div>
+
         </div>
+
+        <div class="timer-item">
+                <div class="timer-text">{{this.dataService.testState.completedX.length + 1}} / 12</div>
+
+        </div>
+
+
 
 </mat-card>

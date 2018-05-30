@@ -5,7 +5,7 @@
       mat-raised-button color="accent"
       (click)="btnClick();"
     >
-      {{this.dataService.testState.isTestStarted ? "Stop test" : this.dataService.testState.isTestComplete ? "New test" : "Start test"}}
+      {{this.dataService.testState.isTestStarted ? "Stop" : this.dataService.testState.isTestComplete ? "New test" : "Start"}}
     </button>
   </div>
 </div>

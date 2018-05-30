@@ -104,38 +104,109 @@ mat-card {
   align-items: center;
   justify-content: center;
   flex-grow: 1;
+}
+
+.question-text, .answer {
   font-size: 1.75em;
 }
 
-.mat-raised-button {
-  font-size: 16px;
+// .keypad-item.button {
+//   font-size: 16px;
+// }
+
+.mat-raised-button .mat-button-wrapper .mat-icon {
+  height: 20px;
+  width: 20px;
+}
+.keypad-container .keypad-item .mat-raised-button {
+  line-height: 20px !important;
+}
+
+
+.timer-container .timer-item .mat-icon {
+  height: 20px;
+  width: 20px;
+}
+
+.timer-text {
+  align-self: center;
+  font-size: 1em;
 }
 
 @media (min-width: 375px) {
-  .question-display-container {
+  .question-text, .answer {
     font-size: 2em;
   }
   .mat-raised-button {
-    font-size: 18px;
+    font-size: 20px;
     line-height: 40px !important;
+  }
+  .mat-raised-button .mat-button-wrapper .mat-icon {
+    height: 27px;
+    width: 22px;
+  }
+  .test-feedback-icon-animation-correct:before, .test-feedback-icon-animation-incorrect:before  {
+    background-size: 26px 26px !important;
+    height: 26px !important;
+    width: 26px !important;
+  }
+  .timer-text {
+    font-size: 1.1em;
+  }
+  .timer-container .timer-item .mat-icon {
+    height: 22px;
+    width: 22px;
   }
 }
 
 @media (min-width: 414px) {
-  .question-display-container {
+  .question-text, .answer {
     font-size: 2.5em;
   }
   .mat-raised-button {
-    font-size: 20px;
+    font-size: 22px;
     line-height: 44px !important;
+  }
+  .mat-raised-button .mat-button-wrapper .mat-icon {
+    height: 30px;
+    width: 28px;
+  }
+  .test-feedback-icon-animation-correct:before, .test-feedback-icon-animation-incorrect:before  {
+    background-size: 28px 28px !important;
+    height: 28px !important;
+    width: 28px !important;
+  }
+  .timer-text {
+    font-size: 1.2em;
+  }
+  .timer-container .timer-item .mat-icon {
+    height: 24px;
+    width: 24px;
   }
 }
 
 @media (min-width: 768px) {
-  .question-display-container {
+  .question-text, .answer {
     font-size: 3.5em;
   }
+  .mat-raised-button .mat-button-wrapper .mat-icon {
+    height: 30px;
+    width: 28px;
+  }
+  .test-feedback-icon-animation-correct:before, .test-feedback-icon-animation-incorrect:before  {
+    background-size: 36px 36px !important;
+    height: 36px !important;
+    width: 36px !important;
+  }
+  .timer-text {
+    font-size: 1.5em;
+  }
+  .timer-container .timer-item .mat-icon {
+    height: 30px;
+    width: 30px;
+  }
 }
+
 
 .keypad-container {
   display: flex;
@@ -260,7 +331,7 @@ mat-card {
   // Feedback icon animation
   .test-feedback-icon {
       // font-size: 30px;
-      -webkit-transition:0.60s ease;
+      // -webkit-transition:0.60s ease;
       transition:0.60s ease;
       display: inline-block;
       opacity: 1;
@@ -271,7 +342,7 @@ mat-card {
 
   .test-feedback-icon-animation-base {
       opacity: 0;
-      -webkit-transform: scale(2);
+      // -webkit-transform: scale(2);
       transform: scale(2);
   }
 
@@ -283,9 +354,9 @@ mat-card {
       display: block;
       content: ' ';
       background-image: url('./assets/checkmark.svg');
-      background-size: 28px 28px;
-      height: 28px;
-      width: 28px;
+      background-size: 22px 22px;
+      height: 22px;
+      width: 22px;
   }
 
   .test-feedback-icon-animation-incorrect {
@@ -296,8 +367,8 @@ mat-card {
       display: block;
       content: ' ';
       background-image: url('./assets/close.svg');
-      background-size: 28px 28px;
-      height: 28px;
-      width: 28px;
+      background-size: 24px 24px;
+      height: 24px;
+      width: 24px;
   }
 }
