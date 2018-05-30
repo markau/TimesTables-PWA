@@ -47,23 +47,27 @@ export class TestpageComponent implements OnInit, OnDestroy {
         this.dataService.testState.answerBuffer.length - 1
       );
     } else if (entry === "enter") {
-      // Process answer
-      const answerIsCorrect = this.dataService.verifyAnswer();
+      // Ignore null entry
+      if (this.dataService.testState.answerBuffer.length > 0) {
+        // Process answer
+        const answerIsCorrect = this.dataService.verifyAnswer();
 
-      // Show respective animation
-      this.showCorrectAnimation = answerIsCorrect;
-      this.showIncorrectAnimation = !answerIsCorrect;
+        // Show respective animation
+        this.showCorrectAnimation = answerIsCorrect;
+        this.showIncorrectAnimation = !answerIsCorrect;
 
-      setTimeout(() => {
-        this.showCorrectAnimation = false;
-        this.showIncorrectAnimation = false;
-      }, 500);
+        setTimeout(() => {
+          this.showCorrectAnimation = false;
+          this.showIncorrectAnimation = false;
+        }, 500);
 
-      // Change navigation if test complete
-      if (this.dataService.testState.isTestComplete) {
-        this.router.navigateByUrl("/result");
+        // Change navigation if test complete
+        if (this.dataService.testState.isTestComplete) {
+          this.router.navigateByUrl("/result");
+        }
       }
     } else {
+      // Add entry to buffer if it won't be exceeding 3
       if (this.dataService.testState.answerBuffer.length < 3) {
         this.dataService.testState.answerBuffer =
           this.dataService.testState.answerBuffer + entry;
