@@ -250,3 +250,61 @@ mat-card {
   overflow: hidden;
   word-wrap: break-word;
 }
+
+
+
+.answer-container {
+  width: 30%;
+  text-align: center;
+  .answer {
+      font-size: 32px;
+      // text-align: center;
+      -webkit-transition:0.25s ease;
+      transition:0.25s ease;
+      display: inline-block;
+  }
+
+  // Feedback icon animation
+  .test-feedback-icon {
+      font-size: 30px;
+      -webkit-transition:0.60s ease;
+      transition:0.60s ease;
+      display: inline-block;
+      opacity: 1;
+      font-style: normal;
+      font-weight: normal;
+      text-decoration: inherit;
+  }
+
+  .test-feedback-icon-animation-base {
+      opacity: 0;
+      -webkit-transform: scale(2);
+      transform: scale(2);
+  }
+
+  .test-feedback-icon-animation-correct {
+      @extend .test-feedback-icon-animation-base;
+  }
+  .test-feedback-icon-animation-correct:before {
+      // content: "\2713";
+      display: block;
+      content: ' ';
+      background-image: url('./assets/checkmark.svg');
+      background-size: 28px 28px;
+      height: 28px;
+      width: 28px;
+  }
+
+  .test-feedback-icon-animation-incorrect {
+      @extend .test-feedback-icon-animation-base;
+  }
+  .test-feedback-icon-animation-incorrect:before {
+      // content: "\274c";
+      display: block;
+      content: ' ';
+      background-image: url('./assets/close.svg');
+      background-size: 28px 28px;
+      height: 28px;
+      width: 28px;
+  }
+}

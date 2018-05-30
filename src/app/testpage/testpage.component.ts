@@ -19,6 +19,9 @@ export class TestpageComponent implements OnInit, OnDestroy {
 
   constructor(private router: Router, public dataService: DataService) {}
 
+  public showCorrectAnimation = false;
+  public showIncorrectAnimation = false;
+
   ngOnInit() {
     // If the user has inadvertently found their way here, redirect back to test setup
     if (!this.dataService.testState.isTestStarted) {
@@ -47,7 +50,14 @@ export class TestpageComponent implements OnInit, OnDestroy {
       // Process answer
       const answerIsCorrect = this.dataService.verifyAnswer();
 
-      // Display right/wrong animation
+      // Show respective animation
+      this.showCorrectAnimation = answerIsCorrect;
+      this.showIncorrectAnimation = !answerIsCorrect;
+
+      setTimeout(() => {
+        this.showCorrectAnimation = false;
+        this.showIncorrectAnimation = false;
+      }, 1000);
 
       // Change navigation if test complete
       if (this.dataService.testState.isTestComplete) {

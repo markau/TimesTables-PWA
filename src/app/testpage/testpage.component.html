@@ -7,8 +7,15 @@
                         {{this.dataService.testState.answerBuffer}}
                 </div> -->
                 <span>
-                        {{this.dataService.testState.x}} x {{this.dataService.testState.y}} = {{this.dataService.testState.answerBuffer}}
+                        {{this.dataService.testState.x}} x {{this.dataService.testState.y}} =
                 </span>
+                <div class="answer-container">
+                                <span class="answer">
+                                                {{this.dataService.testState.answerBuffer}}
+                                </span>
+                                <span class="test-feedback-icon" [ngClass]="{'test-feedback-icon-animation-correct': this.showCorrectAnimation, 'test-feedback-icon-animation-incorrect': this.showIncorrectAnimation }"></span>
+                                </div>
+
         </div>
 </mat-card>
 
