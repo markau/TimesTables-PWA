@@ -32,6 +32,10 @@ export class AppComponent {
       "timer",
       this.domSanitizer.bypassSecurityTrustResourceUrl("../assets/timer.svg")
     );
+    this.matIconRegistry.addSvgIcon(
+      "github",
+      this.domSanitizer.bypassSecurityTrustResourceUrl("../assets/github.svg")
+    );
   }
   title = "app";
 }

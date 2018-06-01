@@ -39,7 +39,7 @@ $md-mcgpalette0: (
 
 // http://mcg.mbitson.com/
 
-
+// https://material.io/design/color/#tools-for-picking-colors
 
 
 
@@ -51,7 +51,7 @@ $md-mcgpalette0: (
 $timestables-theme-primary: mat-palette($mat-blue, 700, 300, 900);
 // $timestables-theme-accent: mat-palette($mat-deep-orange, A200);
 $timestables-theme-accent: mat-palette($md-mcgpalette0, 600);
-$timestables-theme-warn: mat-palette($mat-deep-orange, A200);
+$timestables-theme-warn: mat-palette($md-mcgpalette0, 200);
 
 // create theme (use mat-dark-theme for themes with dark backgrounds)
 $timestables-theme: mat-light-theme(

@@ -67,7 +67,7 @@ app-testcontrol {
   margin: 0 0 1em 0;
 }
 
-app-testpage, app-testsetup, app-resultpage {
+app-testpage, app-testsetup, app-resultpage, {
   display: flex;
   flex-direction: column;
   flex-grow: 1;
@@ -94,6 +94,19 @@ mat-card {
   text-align: center;
   display: flex !important;
   padding: 15px !important;
+}
+
+.info-container {
+  background-color: hsl(233, 20, 96) !important;
+  display: flex;
+  flex-direction: column;
+  // width: 100%;
+  a {
+    width: 100%;
+  }
+  .info-button-container {
+    padding: 0.3em 0;
+  }
 }
 
 // 2 x 2 = ?
@@ -272,7 +285,7 @@ mat-card {
 .checkbox-row {
   display: flex;
   flex-direction: row;
-  margin-left: 2em;
+  // margin-left: 2em;
 }
 .checkbox-item {
   display: flex;
@@ -280,7 +293,7 @@ mat-card {
   height: 3em;
   box-sizing: border-box;
   align-items: center;
-  justify-content: left;
+  justify-content: center;
 }
 
 
