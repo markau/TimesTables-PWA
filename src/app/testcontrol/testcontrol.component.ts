@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { DataService } from "../data.service";
+import { Location } from "@angular/common";
 
 @Component({
   selector: "app-testcontrol",
@@ -8,12 +9,33 @@ import { DataService } from "../data.service";
   styleUrls: ["./testcontrol.component.css"]
 })
 export class TestcontrolComponent implements OnInit {
-  constructor(private router: Router, public dataService: DataService) {}
+  constructor(private location: Location, private router: Router, public dataService: DataService) {
 
-  ngOnInit() {}
+    router.events.subscribe((val) => {
+      if (location.path() === "/about") {
+        this.buttonText = "Back";
+      } else if (this.dataService.testState.isTestStarted) {
+        this.buttonText = "Stop";
+      } else if (this.dataService.testState.isTestComplete) {
+        this.buttonText = "New Test";
+      } else {
+        this.buttonText = "Start";
+      }
+      });
+
+  }
+
+  public buttonText = "";
+
+  ngOnInit() {
+
+  }
 
   btnClick = function() {
-    if (this.dataService.testState.isTestStarted) {
+    if (this.location.path() === "/about") {
+      this.router.navigateByUrl("/setup");
+      this.dataService.resetTest();
+    } else if (this.dataService.testState.isTestStarted) {
       this.router.navigateByUrl("/setup");
       this.dataService.resetTest();
     } else if (this.dataService.testState.isTestComplete) {

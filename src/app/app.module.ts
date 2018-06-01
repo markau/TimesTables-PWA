@@ -10,7 +10,11 @@ import { ResultpageComponent } from "./resultpage/resultpage.component";
 
 import { environment } from "../environments/environment";
 
-import { MatToolbarModule, MatSnackBarModule, MatTable } from "@angular/material";
+import {
+  MatToolbarModule,
+  MatSnackBarModule,
+  MatTable
+} from "@angular/material";
 import { MatButtonModule } from "@angular/material";
 import { MatRadioModule } from "@angular/material/radio";
 import { MatCardModule } from "@angular/material/card";
@@ -24,6 +28,7 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { MinuteSecondsPipe } from "./minute-seconds.pipe";
+import { AboutpageComponent } from "./aboutpage/aboutpage.component";
 
 // import { NgxLineChartModule } from "../../ngx-line-chart";
 
@@ -31,7 +36,8 @@ const appRoutes: Routes = [
   { path: "", component: TestsetupComponent },
   { path: "setup", component: TestsetupComponent },
   { path: "test", component: TestpageComponent },
-  { path: "result", component: ResultpageComponent }
+  { path: "result", component: ResultpageComponent },
+  { path: "about", component: AboutpageComponent }
 ];
 
 @NgModule({
@@ -41,12 +47,13 @@ const appRoutes: Routes = [
     TestsetupComponent,
     TestpageComponent,
     MinuteSecondsPipe,
-    ResultpageComponent
+    ResultpageComponent,
+    AboutpageComponent
   ],
   imports: [
     RouterModule.forRoot(
       appRoutes,
-      { enableTracing: true } // <-- debugging purposes only
+      { enableTracing: false } // <-- debugging purposes only
     ),
     FormsModule,
     BrowserModule,
@@ -61,9 +68,9 @@ const appRoutes: Routes = [
     HttpClientModule,
     ServiceWorkerModule.register("/ngsw-worker.js", {
       enabled: environment.production
-    }),
+    })
   ],
   providers: [DataService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}
