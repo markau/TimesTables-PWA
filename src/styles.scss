@@ -1,17 +1,15 @@
-
 // @import "~normalize.css/normalize.css";
 
 // Custom theme
-@import '~@angular/material/theming';
+@import "~@angular/material/theming";
 @include mat-core();
-@import './theme/timestables-theme.scss';
+@import "./theme/timestables-theme.scss";
 
 // specify theme class eg: <body class="timestables-theme"> ... </body>
 .timestables-theme {
   // use our theme with angular-material-theme mixin
   @include angular-material-theme($timestables-theme);
 }
-
 
 body {
   padding: 1em;
@@ -67,7 +65,9 @@ app-testcontrol {
   margin: 0 0 1em 0;
 }
 
-app-testpage, app-testsetup, app-resultpage, {
+app-testpage,
+app-testsetup,
+app-resultpage {
   display: flex;
   flex-direction: column;
   flex-grow: 1;
@@ -119,7 +119,8 @@ mat-card {
   flex-grow: 1;
 }
 
-.question-text, .answer {
+.question-text,
+.answer {
   font-size: 1.75em;
 }
 
@@ -135,7 +136,6 @@ mat-card {
   line-height: 20px !important;
 }
 
-
 .timer-container .timer-item .mat-icon {
   height: 20px;
   width: 20px;
@@ -147,7 +147,8 @@ mat-card {
 }
 
 @media (min-width: 375px) {
-  .question-text, .answer {
+  .question-text,
+  .answer {
     font-size: 2em;
   }
   .mat-raised-button {
@@ -158,7 +159,8 @@ mat-card {
     height: 27px;
     width: 22px;
   }
-  .test-feedback-icon-animation-correct:before, .test-feedback-icon-animation-incorrect:before  {
+  .test-feedback-icon-animation-correct:before,
+  .test-feedback-icon-animation-incorrect:before {
     background-size: 26px 26px !important;
     height: 26px !important;
     width: 26px !important;
@@ -173,7 +175,8 @@ mat-card {
 }
 
 @media (min-width: 414px) {
-  .question-text, .answer {
+  .question-text,
+  .answer {
     font-size: 2.5em;
   }
   .mat-raised-button {
@@ -184,7 +187,8 @@ mat-card {
     height: 30px;
     width: 28px;
   }
-  .test-feedback-icon-animation-correct:before, .test-feedback-icon-animation-incorrect:before  {
+  .test-feedback-icon-animation-correct:before,
+  .test-feedback-icon-animation-incorrect:before {
     background-size: 28px 28px !important;
     height: 28px !important;
     width: 28px !important;
@@ -199,14 +203,16 @@ mat-card {
 }
 
 @media (min-width: 768px) {
-  .question-text, .answer {
+  .question-text,
+  .answer {
     font-size: 3.5em;
   }
   .mat-raised-button .mat-button-wrapper .mat-icon {
     height: 30px;
     width: 28px;
   }
-  .test-feedback-icon-animation-correct:before, .test-feedback-icon-animation-incorrect:before  {
+  .test-feedback-icon-animation-correct:before,
+  .test-feedback-icon-animation-incorrect:before {
     background-size: 36px 36px !important;
     height: 36px !important;
     width: 36px !important;
@@ -219,7 +225,6 @@ mat-card {
     width: 30px;
   }
 }
-
 
 .keypad-container {
   display: flex;
@@ -246,8 +251,6 @@ mat-card {
   }
 }
 
-
-
 .timer-container {
   display: flex;
   flex-direction: row;
@@ -263,8 +266,6 @@ mat-card {
   }
 }
 
-
-
 .material-icons {
   vertical-align: middle;
 }
@@ -272,7 +273,6 @@ mat-card {
 .timer-text {
   margin-left: 0.25em;
 }
-
 
 .icon-button {
   font-size: 1.25em;
@@ -295,7 +295,6 @@ mat-card {
   align-items: center;
   justify-content: center;
 }
-
 
 .resultpage-container {
   display: flex;
@@ -329,59 +328,57 @@ mat-card {
   word-wrap: break-word;
 }
 
-
-
 .answer-container {
   width: 40%;
   text-align: center;
   .answer {
-      // font-size: 32px;
-      -webkit-transition:0.25s ease;
-      transition:0.25s ease;
-      display: inline-block;
+    // font-size: 32px;
+    -webkit-transition: 0.25s ease;
+    transition: 0.25s ease;
+    display: inline-block;
   }
 
   // Feedback icon animation
   .test-feedback-icon {
-      // font-size: 30px;
-      // -webkit-transition:0.60s ease;
-      transition:0.60s ease;
-      display: inline-block;
-      opacity: 1;
-      font-style: normal;
-      font-weight: normal;
-      text-decoration: inherit;
+    // font-size: 30px;
+    // -webkit-transition:0.60s ease;
+    transition: 0.6s ease;
+    display: inline-block;
+    opacity: 1;
+    font-style: normal;
+    font-weight: normal;
+    text-decoration: inherit;
   }
 
   .test-feedback-icon-animation-base {
-      opacity: 0;
-      // -webkit-transform: scale(2);
-      transform: scale(2);
+    opacity: 0;
+    // -webkit-transform: scale(2);
+    transform: scale(2);
   }
 
   .test-feedback-icon-animation-correct {
-      @extend .test-feedback-icon-animation-base;
+    @extend .test-feedback-icon-animation-base;
   }
   .test-feedback-icon-animation-correct:before {
-      // content: "\2713";
-      display: block;
-      content: ' ';
-      background-image: url('./assets/checkmark.svg');
-      background-size: 22px 22px;
-      height: 22px;
-      width: 22px;
+    // content: "\2713";
+    display: block;
+    content: " ";
+    background-image: url("./assets/checkmark.svg");
+    background-size: 22px 22px;
+    height: 22px;
+    width: 22px;
   }
 
   .test-feedback-icon-animation-incorrect {
-      @extend .test-feedback-icon-animation-base;
+    @extend .test-feedback-icon-animation-base;
   }
   .test-feedback-icon-animation-incorrect:before {
-      // content: "\274c";
-      display: block;
-      content: ' ';
-      background-image: url('./assets/close.svg');
-      background-size: 24px 24px;
-      height: 24px;
-      width: 24px;
+    // content: "\274c";
+    display: block;
+    content: " ";
+    background-image: url("./assets/close.svg");
+    background-size: 24px 24px;
+    height: 24px;
+    width: 24px;
   }
 }

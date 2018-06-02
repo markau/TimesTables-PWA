@@ -9,9 +9,12 @@ import { Location } from "@angular/common";
   styleUrls: ["./testcontrol.component.css"]
 })
 export class TestcontrolComponent implements OnInit {
-  constructor(private location: Location, private router: Router, public dataService: DataService) {
-
-    router.events.subscribe((val) => {
+  constructor(
+    private location: Location,
+    private router: Router,
+    public dataService: DataService
+  ) {
+    router.events.subscribe(val => {
       if (location.path() === "/about") {
         this.buttonText = "Back";
       } else if (this.dataService.testState.isTestStarted) {
@@ -21,15 +24,12 @@ export class TestcontrolComponent implements OnInit {
       } else {
         this.buttonText = "Start";
       }
-      });
-
+    });
   }
 
   public buttonText = "";
 
-  ngOnInit() {
-
-  }
+  ngOnInit() {}
 
   btnClick = function() {
     if (this.location.path() === "/about") {
