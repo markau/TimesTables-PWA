@@ -69,14 +69,14 @@
         <a mat-raised-button routerLink="/about">About this app</a>
     </div>
 
-    <div class="info-button-container">
-        <a mat-raised-button href="https://github.com" target="_blank">
-            See the project on Github
+    <!-- <div class="info-button-container">
+        <a mat-raised-button href="https://developers.google.com/web/progressive-web-apps/" target="_blank">
+            About Progressive Web Apps
         </a>
-    </div>
+    </div> -->
 
-    <div class="info-button-container">
-        <a color="primary" mat-raised-button>
+    <div class="info-button-container" *ngIf="this.showAddToHomeScreen">
+        <a color="primary" mat-raised-button (click)="addToHomeScreen()">
             <!-- <mat-icon style="height: 28px; width: 28px; margin-right: 3px;" svgIcon="github"></mat-icon> -->
             Add app to homescreen
         </a>

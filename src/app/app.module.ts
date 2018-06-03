@@ -12,7 +12,6 @@ import { environment } from "../environments/environment";
 
 import {
   MatToolbarModule,
-  MatSnackBarModule,
   MatTable
 } from "@angular/material";
 import { MatButtonModule } from "@angular/material";
@@ -62,8 +61,6 @@ const appRoutes: Routes = [
     MatButtonModule,
     MatRadioModule,
     MatCardModule,
-    MatSnackBarModule,
-    // NgxLineChartModule,
     MatIconModule,
     HttpClientModule,
     ServiceWorkerModule.register("/ngsw-worker.js", {

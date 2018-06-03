@@ -3,8 +3,6 @@ import { DataService } from "../data.service";
 
 import { fadeInAnimation } from "../_animations/index";
 
-import { MatSnackBar } from "@angular/material";
-
 @Component({
   selector: "app-testsetup",
   templateUrl: "./testsetup.component.html",
@@ -14,7 +12,24 @@ import { MatSnackBar } from "@angular/material";
 export class TestsetupComponent implements OnInit {
   @HostBinding("@fadeInAnimation") fadeInAnimation = "";
 
-  selectedNumberSet = this.dataService.testState.y;
+  public selectedNumberSet = this.dataService.testState.y;
+
+  public showAddToHomeScreen = false;
+  private deferredPrompt: any;
+
+  addToHomeScreen = () => {
+    this.showAddToHomeScreen = false;
+    this.deferredPrompt.prompt();
+    // Wait for the user to respond to the prompt
+    this.deferredPrompt.userChoice.then(choiceResult => {
+      if (choiceResult.outcome === "accepted") {
+        console.log("User accepted the A2HS prompt");
+      } else {
+        console.log("User dismissed the A2HS prompt");
+      }
+      this.deferredPrompt = null;
+    });
+  }
 
   onChange = number => {
     this.dataService.testState.y = number;
@@ -23,27 +38,14 @@ export class TestsetupComponent implements OnInit {
   constructor(public dataService: DataService, public snackBar: MatSnackBar) {}
 
   ngOnInit() {
-
     if (window.matchMedia("(display-mode: browser").matches) {
       // We are in the browser
-      window.addEventListener("beforeinstallprompt", event => {
-        event.preventDefault();
-        const sb = this.snackBar.open(
-          "Do you want to install this App?",
-          "Install",
-          { duration: 5000 }
-        );
-        sb.onAction().subscribe(() => {
-          (event as any).prompt();
-          (event as any).userChoice.then(result => {
-            if (result.outcome === "dismissed") {
-              // TODO: Track no installation
-            } else {
-              // TODO: It was installed
-            }
-          });
-        });
-        return false;
+      window.addEventListener("beforeinstallprompt", e => {
+        // Prevent Chrome 67 and earlier from automatically showing the prompt
+        e.preventDefault();
+        // Stash the event so it can be triggered later.
+        this.deferredPrompt = e;
+        this.showAddToHomeScreen = true;
       });
     }
   }
