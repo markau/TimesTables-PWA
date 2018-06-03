@@ -35,7 +35,7 @@ export class TestsetupComponent implements OnInit {
     this.dataService.testState.y = number;
   }
 
-  constructor(public dataService: DataService, public snackBar: MatSnackBar) {}
+  constructor(public dataService: DataService) {}
 
   ngOnInit() {
     if (window.matchMedia("(display-mode: browser").matches) {
