@@ -10,7 +10,7 @@ describe("TestcontrolComponent", () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [TestcontrolComponent],
-      schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
+      schemas: [CUSTOM_ELEMENTS_SCHEMA]
     }).compileComponents();
   }));
 

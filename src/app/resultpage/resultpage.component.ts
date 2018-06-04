@@ -7,16 +7,13 @@ import { fadeInAnimation } from "../_animations/index";
 import { LocalStorage } from "@ngx-pwa/local-storage";
 import { getTypeNameForDebugging } from "@angular/core/src/change_detection/differs/iterable_differs";
 import { MinuteSecondsPipe } from "../minute-seconds.pipe";
-import { DatePipe } from "@angular/common";
-
-// import "../../../node_modules/chart.js/src/chart.js";
 
 @Component({
   selector: "app-resultpage",
   templateUrl: "./resultpage.component.html",
   styleUrls: ["./resultpage.component.scss"],
   animations: [fadeInAnimation],
-  providers: [DatePipe, MinuteSecondsPipe]
+  providers: [MinuteSecondsPipe]
 })
 export class ResultpageComponent implements OnInit {
   @HostBinding("@fadeInAnimation") fadeInAnimation = "";
@@ -24,7 +21,6 @@ export class ResultpageComponent implements OnInit {
     private router: Router,
     public dataService: DataService,
     protected localStorage: LocalStorage,
-    private datePipe: DatePipe,
     private minuteSecondsPipe: MinuteSecondsPipe
   ) {}
 

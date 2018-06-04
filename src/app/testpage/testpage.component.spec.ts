@@ -2,6 +2,7 @@ import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
 import { TestpageComponent } from "./testpage.component";
 import { CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
+import { MinuteSecondsPipe } from "../minute-seconds.pipe";
 
 describe("TestpageComponent", () => {
   let component: TestpageComponent;
@@ -9,7 +10,7 @@ describe("TestpageComponent", () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [TestpageComponent],
+      declarations: [TestpageComponent, MinuteSecondsPipe],
       schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
     }).compileComponents();
   }));

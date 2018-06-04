@@ -67,6 +67,7 @@ const appRoutes: Routes = [
       enabled: environment.production
     })
   ],
+  exports: [MinuteSecondsPipe],
   providers: [DataService],
   bootstrap: [AppComponent]
 })

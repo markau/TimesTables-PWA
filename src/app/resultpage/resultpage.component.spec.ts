@@ -1,7 +1,11 @@
 import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { RouterTestingModule } from "@angular/router/testing";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
 import { ResultpageComponent } from "./resultpage.component";
 import { CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
+import { MinuteSecondsPipe } from "../minute-seconds.pipe";
+import { DataService } from "../data.service";
 
 describe("ResultpageComponent", () => {
   let component: ResultpageComponent;
@@ -9,8 +13,10 @@ describe("ResultpageComponent", () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ResultpageComponent],
-      schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
+      imports: [RouterTestingModule, BrowserAnimationsModule],
+      declarations: [ResultpageComponent, MinuteSecondsPipe],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
+      providers: [DataService],
     }).compileComponents();
   }));
 
