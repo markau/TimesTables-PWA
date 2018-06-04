@@ -7,6 +7,7 @@ import { TestcontrolComponent } from "./testcontrol/testcontrol.component";
 import { TestsetupComponent } from "./testsetup/testsetup.component";
 import { TestpageComponent } from "./testpage/testpage.component";
 import { ResultpageComponent } from "./resultpage/resultpage.component";
+import { AboutpageComponent } from "./aboutpage/aboutpage.component";
 
 import { environment } from "../environments/environment";
 
@@ -27,16 +28,15 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { MinuteSecondsPipe } from "./minute-seconds.pipe";
-import { AboutpageComponent } from "./aboutpage/aboutpage.component";
 
 // import { NgxLineChartModule } from "../../ngx-line-chart";
 
 const appRoutes: Routes = [
-  { path: "", component: TestsetupComponent },
   { path: "setup", component: TestsetupComponent },
   { path: "test", component: TestpageComponent },
   { path: "result", component: ResultpageComponent },
-  { path: "about", component: AboutpageComponent }
+  { path: "about", component: AboutpageComponent },
+  { path: "**", component: TestsetupComponent },
 ];
 
 @NgModule({
