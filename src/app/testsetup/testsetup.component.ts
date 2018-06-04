@@ -45,6 +45,7 @@ export class TestsetupComponent implements OnInit {
         e.preventDefault();
         // Stash the event so it can be triggered later.
         this.deferredPrompt = e;
+        // Show the button to the user
         this.showAddToHomeScreen = true;
       });
     }

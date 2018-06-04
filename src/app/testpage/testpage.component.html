@@ -2,7 +2,7 @@
 
   <div class="question-text">
     {{this.dataService.testState.x}} x {{this.dataService.testState.y}} =
-  </div
+  </div>
 
   <div class="answer-container">
     <span class="answer">
@@ -13,59 +13,33 @@
 
 </mat-card>
 
+<!-- Generate keypad buttons -->
 <mat-card class="keypad-container">
 
-  <div class="keypad-item keypad-item-01">
-    <button mat-raised-button color="primary" (click)="btnClick(1);">1</button>
+  <!-- Buttons 1 - 9 -->
+  <div class="keypad-item" *ngFor="let number of [1,2,3,4,5,6,7,8,9]">
+    <button mat-raised-button color="primary" (click)="btnClick(number);">{{number}}</button>
   </div>
 
-  <div class="keypad-item keypad-item-02">
-    <button mat-raised-button primary color="primary" (click)="btnClick(2);">2</button>
-  </div>
-
-  <div class="keypad-item keypad-item-03">
-    <button mat-raised-button color="primary" (click)="btnClick(3);">3</button>
-  </div>
-
-  <div class="keypad-item keypad-item-04">
-    <button mat-raised-button color="primary" (click)="btnClick(4);">4</button>
-  </div>
-
-  <div class="keypad-item keypad-item-05">
-    <button mat-raised-button color="primary" (click)="btnClick(5);">5</button>
-  </div>
-
-  <div class="keypad-item keypad-item-06">
-    <button mat-raised-button color="primary" (click)="btnClick(6);">6</button>
-  </div>
-
-  <div class="keypad-item keypad-item-07">
-    <button mat-raised-button color="primary" (click)="btnClick(7);">7</button>
-  </div>
-
-  <div class="keypad-item keypad-item-08">
-    <button mat-raised-button color="primary" (click)="btnClick(8);">8</button>
-  </div>
-
-  <div class="keypad-item keypad-item-09">
-    <button mat-raised-button color="primary" (click)="btnClick(9);">9</button>
-  </div>
-
+  <!-- Backspace button -->
   <div class="keypad-item">
     <button mat-raised-button color="primary" (click)="btnClick('del');">
       <mat-icon svgIcon="backspace"></mat-icon>
     </button>
   </div>
 
+  <!-- 0 button -->
   <div class="keypad-item">
     <button mat-raised-button color="primary" (click)="btnClick(0);">0</button>
   </div>
 
+  <!-- Enter button -->
   <div class="keypad-item">
     <button mat-raised-button color="accent" (click)="btnClick('enter');">
       <mat-icon svgIcon="checkmark-outline"></mat-icon>
     </button>
   </div>
+
 </mat-card>
 
 <mat-card class="timer-container">

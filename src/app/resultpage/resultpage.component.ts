@@ -32,35 +32,6 @@ export class ResultpageComponent implements OnInit {
   public accuracyPercentage = 0;
   public wrongAnswers = "";
 
-  // public testTimeArray: Array<any> = [
-  //   { name: `${this.dataService.testState.y}x results (seconds)`, points: [] }
-  // ];
-
-  // public chartStyle = {
-  //   dataSetStyles: [
-  //     {
-  //       circle: {
-  //         color: "rgba(18,159,177, 1.0)",
-  //         radius: 4
-  //       },
-  //       labels: {
-  //         value: {
-  //           color: "rgba(18,159,177, 1.0)",
-  //           fontSize: 18
-  //         },
-  //         yAxis: {
-  //           color: "rgba(18,159,177, 1.0)",
-  //           fontSize: 20
-  //         }
-  //       },
-  //       line: {
-  //         color: "rgba(18,159,177, 0.4)",
-  //         width: 5
-  //       }
-  //     }
-  //   ]
-  // };
-
   ngOnInit() {
     // If navigating to this page first, redirect back to test setup
     if (!this.dataService.testState.isTestComplete) {
@@ -100,8 +71,12 @@ export class ResultpageComponent implements OnInit {
       this.accuracyPercentage = resultObject.accuracyPercentage;
 
       // wrong answers
-      const uniqueWrongAnswerArray = Array.from(new Set(this.dataService.testState.incorrectX.map(item => item))).sort();
-      this.wrongAnswers = uniqueWrongAnswerArray.join(`x${this.dataService.testState.y} `);
+      const uniqueWrongAnswerArray = Array.from(
+        new Set(this.dataService.testState.incorrectX.map(item => item))
+      ).sort();
+      this.wrongAnswers = uniqueWrongAnswerArray.join(
+        `x${this.dataService.testState.y} `
+      );
       this.wrongAnswers += `x${this.dataService.testState.y}`;
 
       this.isFirstAttempt = resultsOfThisType.length === 0;
@@ -130,25 +105,6 @@ export class ResultpageComponent implements OnInit {
           console.log("Error saving to Localstorage");
         }
       );
-
-      // Prepare graphs
-
-      // // Get current test type results from the store
-      // const newStore = currentStore.filter(
-      //   x => x.y === this.dataService.testState.y
-      // );
-
-      // // Local arrays
-      // const minSecPipe = new MinuteSecondsPipe();
-
-      // // Populate
-      // newStore.map(element =>
-      //   this.testTimeArray[0].points.push({
-      //     x: newStore.indexOf(element),
-      //     y: minSecPipe.transform(element.finalMilliSeconds)
-      //   })
-      // );
-
     });
   };
 }
