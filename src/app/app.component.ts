@@ -37,5 +37,5 @@ export class AppComponent {
       this.domSanitizer.bypassSecurityTrustResourceUrl("../assets/github.svg")
     );
   }
-  title = "app";
+  title = "Times Tables";
 }

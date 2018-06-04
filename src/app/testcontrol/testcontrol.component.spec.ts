@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
 import { TestcontrolComponent } from "./testcontrol.component";
+import { CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
 
 describe("TestcontrolComponent", () => {
   let component: TestcontrolComponent;
@@ -8,7 +9,8 @@ describe("TestcontrolComponent", () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [TestcontrolComponent]
+      declarations: [TestcontrolComponent],
+      schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
     }).compileComponents();
   }));
 
