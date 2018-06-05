@@ -60,7 +60,8 @@ describe("TestpageComponent", () => {
       dataService,
       "enterNumberIntoAnswerBuffer"
     ).and.callThrough();
-    verifyAnswerSpy = spyOn(dataService, "verifyAnswer").and.returnValue(true);
+    verifyAnswerSpy = spyOn(dataService, "verifyAnswer").and.callThrough();
+    // verifyAnswerSpy = spyOn(dataService, "verifyAnswer").and.returnValue(true);
   });
 
   // https://alligator.io/angular/testing-with-spies/
@@ -95,7 +96,7 @@ describe("TestpageComponent", () => {
       .triggerEventHandler("click", null);
 
     expect(component.dataService.testState.answerBuffer).toBe("6");
-    expect(enterNumberSpy).toHaveBeenCalled();
+    expect(enterNumberSpy).toHaveBeenCalledWith(6);
   });
 
   it("should call doBackspace on the service", () => {
@@ -119,7 +120,7 @@ describe("TestpageComponent", () => {
       .triggerEventHandler("click", null);
 
     expect(verifyAnswerSpy).toHaveBeenCalled();
-    expect(verifyAnswerSpy.returnValue.toEqual(true);
+    // expect(verifyAnswerSpy.returnValue).toEqual(true);
   });
 
 });
