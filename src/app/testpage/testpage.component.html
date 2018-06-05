@@ -18,24 +18,24 @@
 
   <!-- Buttons 1 - 9 -->
   <div class="keypad-item" *ngFor="let number of [1,2,3,4,5,6,7,8,9]">
-    <button mat-raised-button color="primary" (click)="btnClick(number);">{{number}}</button>
+    <button [ngClass]="'key-'+ number" mat-raised-button color="primary" (click)="btnClick(number);">{{number}}</button>
   </div>
 
   <!-- Backspace button -->
   <div class="keypad-item">
-    <button mat-raised-button color="primary" (click)="btnClick('del');">
+    <button class="key-backspace" mat-raised-button color="primary" (click)="btnClick('del');">
       <mat-icon svgIcon="backspace"></mat-icon>
     </button>
   </div>
 
   <!-- 0 button -->
   <div class="keypad-item">
-    <button mat-raised-button color="primary" (click)="btnClick(0);">0</button>
+    <button class="key-0" mat-raised-button color="primary" (click)="btnClick(0);">0</button>
   </div>
 
   <!-- Enter button -->
   <div class="keypad-item">
-    <button mat-raised-button color="accent" (click)="btnClick('enter');">
+    <button class="key-enter" mat-raised-button color="accent" (click)="btnClick('enter');">
       <mat-icon svgIcon="checkmark-outline"></mat-icon>
     </button>
   </div>

@@ -53,6 +53,23 @@ describe("DataService", () => {
   );
 
   it(
+    "number can be entered into answer buffer",
+    inject([DataService], (service: DataService) => {
+      service.enterNumberIntoAnswerBuffer(3);
+      expect(service.testState.answerBuffer).toEqual("3");
+    })
+  );
+
+  it(
+    "backspace works on answer buffer",
+    inject([DataService], (service: DataService) => {
+      service.enterNumberIntoAnswerBuffer(3);
+      service.doBackspace();
+      expect(service.testState.answerBuffer).toEqual("");
+    })
+  );
+
+  it(
     "verifyAnswer() handles correct result",
     inject([DataService], (service: DataService) => {
       service.startTest();

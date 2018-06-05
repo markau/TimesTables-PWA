@@ -43,6 +43,21 @@ export class DataService {
     this.resetTest();
   }
 
+  public doBackspace = () => {
+    this.testState.answerBuffer = this.testState.answerBuffer.substring(
+      0,
+      this.testState.answerBuffer.length - 1
+    );
+  }
+
+  public enterNumberIntoAnswerBuffer = (number) => {
+      // Add entry to buffer if it won't be exceeding 3
+      if (this.testState.answerBuffer.length < 3) {
+        this.testState.answerBuffer =
+          this.testState.answerBuffer + number;
+      }
+  }
+
   public verifyAnswer = () => {
     // Is it correct
     const computedAnswer = this.testState.x * this.testState.y;

@@ -40,12 +40,8 @@ export class TestpageComponent implements OnInit, OnDestroy {
   }
 
   btnClick = function(entry) {
-    // this.dataService.testState.acceptInput(entry);
     if (entry === "del") {
-      this.dataService.testState.answerBuffer = this.dataService.testState.answerBuffer.substring(
-        0,
-        this.dataService.testState.answerBuffer.length - 1
-      );
+      this.dataService.doBackspace();
     } else if (entry === "enter") {
       // Ignore null entry
       if (this.dataService.testState.answerBuffer.length > 0) {
@@ -67,11 +63,7 @@ export class TestpageComponent implements OnInit, OnDestroy {
         }
       }
     } else {
-      // Add entry to buffer if it won't be exceeding 3
-      if (this.dataService.testState.answerBuffer.length < 3) {
-        this.dataService.testState.answerBuffer =
-          this.dataService.testState.answerBuffer + entry;
-      }
+      this.dataService.enterNumberIntoAnswerBuffer(entry);
     }
   };
 }
