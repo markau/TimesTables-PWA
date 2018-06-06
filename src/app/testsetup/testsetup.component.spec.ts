@@ -3,6 +3,7 @@ import { CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { By } from "@angular/platform-browser";
 import { DebugElement } from "@angular/core";
+// import { MatRadioModule } from "@angular/material/radio";
 
 import { TestsetupComponent } from "./testsetup.component";
 import { DataService } from "../data.service";
@@ -36,4 +37,16 @@ describe("TestsetupComponent", () => {
     expect(component).toBeTruthy();
   });
 
+  it("Button label via async() and whenStable()", async(() => {
+    const el = debugElement
+    .query(By.css(".radio-2"));
+    el.triggerEventHandler("click", 3);
+
+    fixture.whenStable().then(() => {
+      fixture.detectChanges();
+      // console.log(el.nativeElement);
+      // expect(radioClickSpy).toHaveBeenCalledWith(3);
+    });
+    component.ngOnInit();
+  }));
 });

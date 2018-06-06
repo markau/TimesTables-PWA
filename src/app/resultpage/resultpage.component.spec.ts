@@ -2,6 +2,8 @@ import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 import { RouterTestingModule } from "@angular/router/testing";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
+import { By } from "@angular/platform-browser";
+import { DebugElement } from "@angular/core";
 
 import { MinuteSecondsPipe } from "../minute-seconds.pipe";
 import { DataService } from "../data.service";
@@ -23,6 +25,9 @@ const appRoutes: Array<Object> = [
 describe("ResultpageComponent", () => {
   let component: ResultpageComponent;
   let fixture: ComponentFixture<ResultpageComponent>;
+  let debugElement: DebugElement;
+  let dataService: DataService;
+  let saveToLocalStorageSpy;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -45,10 +50,25 @@ describe("ResultpageComponent", () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(ResultpageComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
+    // fixture.detectChanges();
+    debugElement = fixture.debugElement;
+    dataService = debugElement.injector.get(DataService);
+    saveToLocalStorageSpy = spyOn(component, "saveToLocalStorage").and.callThrough();
   });
 
   it("should create", () => {
     expect(component).toBeTruthy();
   });
+
+  it("saveToLocalStorage() is called on the component", async(() => {
+    component.dataService.testState.isTestComplete = true;
+
+    fixture.whenStable().then(() => {
+      fixture.detectChanges();
+      expect(saveToLocalStorageSpy).toHaveBeenCalled();
+    });
+    component.ngOnInit();
+  }));
+
+
 });
