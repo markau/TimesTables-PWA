@@ -1,5 +1,9 @@
 # Times Tables
 
+[![Build Status](https://travis-ci.org/markau/timestables.svg?branch=master)](https://travis-ci.org/markau/timestables)
+[![codecov](https://codecov.io/gh/markau/TimesTables/branch/master/graph/badge.svg)](https://codecov.io/gh/markau/TimesTables)
+[![styled with prettier](https://img.shields.io/badge/styled_with-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.3.
 
 ## Demo
