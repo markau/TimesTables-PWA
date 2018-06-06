@@ -5,8 +5,8 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
-    "test": "ng test --watch=false --code-coverage",
-    "testwatch": "ng test",
+    "test": "ng test",
+    "testwatch": "ng test --watch=false --code-coverage",
     "lint": "ng lint",
     "e2e": "ng e2e"
   },
@@ -27,9 +27,6 @@
     "@angular/service-worker": "^6.0.2",
     "@ngx-pwa/local-storage": "^6.0.0-rc.0",
     "core-js": "^2.5.4",
-    "ng2-charts": "^1.6.0",
-    "ngx-line-chart": "^1.0.0",
-    "normalize": "^0.3.1",
     "rxjs": "^6.0.0",
     "zone.js": "^0.8.26"
   },
