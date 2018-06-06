@@ -9,9 +9,6 @@ before_script:
 script:
   - ng build --prod
 
-after_success:
-  - test $TRAVIS_BRANCH = "master" && test $TRAVIS_PULL_REQUEST = "false"
-
 notifications:
   email:
     on_failure: change
