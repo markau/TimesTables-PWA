@@ -36,9 +36,4 @@ describe("TestsetupComponent", () => {
     expect(component).toBeTruthy();
   });
 
-  it("should call changeNumberSet on the service", () => {
-    debugElement.query(By.css(".radio-3")).triggerEventHandler("click", null);
-    expect(radioClickSpy).toHaveBeenCalledWith(3);
-  });
-
 });
