@@ -41,4 +41,4 @@ script:
   - ng test --code-coverage --watch=false
 
 after_success:
-  - bash <(curl -s https://codecov.io/bash) -f coverage/Icov.info
+  - bash <(curl -s https://codecov.io/bash) -f $TRAVIS_BUILD_DIR/coverage/Icov.info
