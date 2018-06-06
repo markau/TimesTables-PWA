@@ -21,8 +21,8 @@ export class DataService {
   public resetTest = () => {
     this.testState.x = 0;
     this.testState.y = 2;
-    // this.testState.remainingX = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
-    this.testState.remainingX = [1, 2];
+    this.testState.remainingX = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+    // this.testState.remainingX = [1, 2];
     this.testState.completedX = [];
     this.testState.incorrectX = [];
     this.testState.answerBuffer = "";
@@ -30,6 +30,10 @@ export class DataService {
     this.testState.isTestComplete = false;
     this.testState.elapsedMilliSeconds = 0;
     this.testState.finalMilliSeconds = 0;
+  }
+
+  public changeNumberSet = (number) => {
+    this.testState.y = number;
   }
 
   public startTest = () => {

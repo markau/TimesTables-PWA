@@ -35,6 +35,14 @@ describe("DataService", () => {
   );
 
   it(
+    "number set can be changed",
+    inject([DataService], (service: DataService) => {
+      service.changeNumberSet(3);
+      expect(service.testState.y).toEqual(3);
+    })
+  );
+
+  it(
     "startTest() method should set appropriate values in testState",
     inject([DataService], (service: DataService) => {
       service.startTest();

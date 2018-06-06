@@ -32,7 +32,7 @@ export class TestsetupComponent implements OnInit {
   }
 
   onChange = number => {
-    this.dataService.testState.y = number;
+    this.dataService.changeNumberSet(number);
   }
 
   constructor(public dataService: DataService) {}
