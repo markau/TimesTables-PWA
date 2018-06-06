@@ -69,6 +69,15 @@ describe("DataService", () => {
   );
 
   it(
+    "number can't be entered into answer buffer where buffer length == 3",
+    inject([DataService], (service: DataService) => {
+      service.testState.answerBuffer = "111";
+      service.enterNumberIntoAnswerBuffer(3);
+      expect(service.testState.answerBuffer).toEqual("111");
+    })
+  );
+
+  it(
     "backspace works on answer buffer",
     inject([DataService], (service: DataService) => {
       service.enterNumberIntoAnswerBuffer(3);
