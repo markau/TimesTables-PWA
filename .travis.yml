@@ -8,6 +8,10 @@ before_script:
 
 script:
   - ng build --prod
+  - npm install codecov -g
+
+after_success:
+  - codecov
 
 notifications:
   email:
