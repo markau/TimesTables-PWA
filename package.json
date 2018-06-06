@@ -5,8 +5,8 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
-    "test": "ng test",
-    "testcoverage": "ng test --watch=false --code-coverage",
+    "test": "ng test --watch=false --code-coverage",
+    "testwatch": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
   },
@@ -42,6 +42,7 @@
     "@types/jasmine": "~2.8.6",
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "~8.9.4",
+    "codecov": "^3.0.1",
     "codelyzer": "~4.2.1",
     "jasmine-core": "~2.99.1",
     "jasmine-spec-reporter": "~4.2.1",
