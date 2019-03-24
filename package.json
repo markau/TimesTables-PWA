@@ -22,7 +22,7 @@
     "@angular/material": "^6.1.0",
     "@angular/platform-browser": "^6.0.2",
     "@angular/platform-browser-dynamic": "^6.0.2",
-    "@angular/pwa": "^0.6.5",
+    "@angular/pwa": "^0.13.6",
     "@angular/router": "^6.0.2",
     "@angular/service-worker": "^6.0.2",
     "@ngx-pwa/local-storage": "^6.0.0-rc.0",
