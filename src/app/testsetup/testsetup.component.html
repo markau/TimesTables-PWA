@@ -6,49 +6,49 @@
 
                 <div class="checkbox-row">
                     <div class="checkbox-item">
-                        <mat-radio-button class="radio-2" [value]="2">2</mat-radio-button>
+                        <mat-radio-button color="primary" class="radio-2" [value]="2">2</mat-radio-button>
                     </div>
                     <div class="checkbox-item">
-                        <mat-radio-button class="radio-3" [value]="3">3</mat-radio-button>
+                        <mat-radio-button color="primary" class="radio-3" [value]="3">3</mat-radio-button>
                     </div>
                     <div class="checkbox-item">
-                        <mat-radio-button class="radio-4" [value]="4">4</mat-radio-button>
-                    </div>
-
-                </div>
-
-                <div class="checkbox-row">
-                    <div class="checkbox-item">
-                        <mat-radio-button class="radio-5" [value]="5">5</mat-radio-button>
-                    </div>
-                    <div class="checkbox-item">
-                        <mat-radio-button class="radio-6" [value]="6">6</mat-radio-button>
-                    </div>
-                    <div class="checkbox-item">
-                        <mat-radio-button class="radio-7" [value]="7">7</mat-radio-button>
+                        <mat-radio-button color="primary" class="radio-4" [value]="4">4</mat-radio-button>
                     </div>
 
                 </div>
 
                 <div class="checkbox-row">
                     <div class="checkbox-item">
-                        <mat-radio-button class="radio-8" [value]="8">8</mat-radio-button>
+                        <mat-radio-button color="primary" class="radio-5" [value]="5">5</mat-radio-button>
                     </div>
                     <div class="checkbox-item">
-                        <mat-radio-button class="radio-9" [value]="9">9</mat-radio-button>
+                        <mat-radio-button color="primary" class="radio-6" [value]="6">6</mat-radio-button>
                     </div>
                     <div class="checkbox-item">
-                        <mat-radio-button class="radio-10" [value]="10">10</mat-radio-button>
+                        <mat-radio-button color="primary" class="radio-7" [value]="7">7</mat-radio-button>
                     </div>
 
                 </div>
 
                 <div class="checkbox-row">
                     <div class="checkbox-item">
-                        <mat-radio-button class="radio-11" [value]="11">11</mat-radio-button>
+                        <mat-radio-button color="primary" class="radio-8" [value]="8">8</mat-radio-button>
                     </div>
                     <div class="checkbox-item">
-                        <mat-radio-button class="radio-12" [value]="12">12</mat-radio-button>
+                        <mat-radio-button color="primary" class="radio-9" [value]="9">9</mat-radio-button>
+                    </div>
+                    <div class="checkbox-item">
+                        <mat-radio-button color="primary" class="radio-10" [value]="10">10</mat-radio-button>
+                    </div>
+
+                </div>
+
+                <div class="checkbox-row">
+                    <div class="checkbox-item">
+                        <mat-radio-button color="primary" class="radio-11" [value]="11">11</mat-radio-button>
+                    </div>
+                    <div class="checkbox-item">
+                        <mat-radio-button color="primary" class="radio-12" [value]="12">12</mat-radio-button>
                     </div>
                     <!-- <div class="checkbox-item">
                             <mat-radio-button>1</mat-radio-button>
@@ -65,21 +65,15 @@
 
 <mat-card class="info-container">
 
-    <div class="info-button-container">
-        <a mat-raised-button routerLink="/about">About this app</a>
+    <div>
+        <a mat-button routerLink="/about">About this app</a>
     </div>
 
-    <!-- <div class="info-button-container">
-        <a mat-raised-button href="https://developers.google.com/web/progressive-web-apps/" target="_blank">
-            About Progressive Web Apps
-        </a>
-    </div> -->
-
-    <div class="info-button-container" *ngIf="this.showAddToHomeScreen">
-        <a color="primary" mat-raised-button (click)="addToHomeScreen()">
+    <div *ngIf="this.showAddToHomeScreen">
+        <button color="primary" mat-raised-button (click)="addToHomeScreen()">
             <!-- <mat-icon style="height: 28px; width: 28px; margin-right: 3px;" svgIcon="github"></mat-icon> -->
-            Add app to homescreen
-        </a>
+            Install app
+        </button>
     </div>
 
 </mat-card>
