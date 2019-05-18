@@ -1,0 +1,5 @@
+[{
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target" : { "namespace": "android_app", "package_name": "com.coolsmallapps.timestables",
+                 "sha256_cert_fingerprints": ["3D:51:0E:DA:26:DB:18:FC:3F:A5:70:5B:7B:3A:7E:55:1B:25:59:17:F0:A7:09:45:E4:26:B8:03:8B:4A:04:0D"] }
+}]
