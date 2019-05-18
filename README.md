@@ -4,7 +4,7 @@
 [![codecov](https://codecov.io/gh/markau/TimesTables/branch/master/graph/badge.svg)](https://codecov.io/gh/markau/TimesTables)
 [![styled with prettier](https://img.shields.io/badge/styled_with-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.3.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.8.
 
 ## Demo
 
