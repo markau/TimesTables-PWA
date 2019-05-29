@@ -370,7 +370,7 @@ mat-card {
     // content: "\2713";
     display: block;
     content: " ";
-    background-image: url("./assets/checkmark.svg");
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath fill='green' d='M0 11l2-2 5 5L18 3l2 2L7 18z'/%3E%3C/svg%3E");
     background-size: 22px 22px;
     height: 22px;
     width: 22px;
@@ -383,7 +383,7 @@ mat-card {
     // content: "\274c";
     display: block;
     content: " ";
-    background-image: url("./assets/close.svg");
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath fill='red' d='M10 8.586L2.929 1.515 1.515 2.929 8.586 10l-7.071 7.071 1.414 1.414L10 11.414l7.071 7.071 1.414-1.414L11.414 10l7.071-7.071-1.414-1.414L10 8.586z'/%3E%3C/svg%3E");
     background-size: 24px 24px;
     height: 24px;
     width: 24px;
