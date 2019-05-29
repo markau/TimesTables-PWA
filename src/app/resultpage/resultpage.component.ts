@@ -5,7 +5,6 @@ import { DataService } from "../data.service";
 import { fadeInAnimation } from "../_animations/index";
 
 import { LocalStorage } from "@ngx-pwa/local-storage";
-import { getTypeNameForDebugging } from "@angular/core/src/change_detection/differs/iterable_differs";
 import { MinuteSecondsPipe } from "../minute-seconds.pipe";
 
 @Component({
