@@ -11,11 +11,9 @@ import { AboutpageComponent } from "./aboutpage/aboutpage.component";
 
 import { environment } from "../environments/environment";
 
-import {
-  MatToolbarModule,
-  MatTable
-} from "@angular/material";
-import { MatButtonModule } from "@angular/material";
+import { MatTable } from "@angular/material/table";
+import { MatToolbarModule } from "@angular/material/toolbar";
+import { MatButtonModule } from "@angular/material/button";
 import { MatRadioModule } from "@angular/material/radio";
 import { MatCardModule } from "@angular/material/card";
 import { MatIconModule } from "@angular/material/icon";
