@@ -29,6 +29,7 @@ describe("TestcontrolComponent", () => {
   let router: Router;
   let debugElement: DebugElement;
   let dataService: DataService;
+  let location: Location;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -51,6 +52,7 @@ describe("TestcontrolComponent", () => {
     component = fixture.componentInstance;
     fixture.detectChanges();
     router = TestBed.get(Router);
+    location = TestBed.get(Location);
     debugElement = fixture.debugElement;
     dataService = debugElement.injector.get(DataService);
   }));
@@ -90,45 +92,63 @@ it("should naviate to the Setup page and the button should show New Test when te
 });
 
 
-//   it("should navigate", () => {
-//     return router
-//     .navigate(["setup"])
-//     .then(() => {
-//       expect(router.url).toBe("/setup");
-//       expect(component.buttonText).toBe("Start");
-//       component.dataService.testState.isTestStarted = true;
-//       expect(component.buttonText).toBe("Stop");
-//       component.dataService.testState.isTestComplete = true;
-//       expect(component.buttonText).toBe("New Test");
-//     })
-//     .then(x => router.navigate(["test"]))
-//     .then(() => {
-//       expect(router.url).toBe("/test");
-//     })
-//     .then(x => router.navigate(["about"]))
-//     .then(() => {
-//       expect(router.url).toBe("/about");
-//       expect(component.buttonText).toBe("Back");
-//     })
-//     .then(x => router.navigate(["result"]))
-//     .then(() => {
-//       expect(router.url).toBe("/result");
-//     })
-//     .then(x => router.navigate(["/"]))
-//     .then(() => {
-//       expect(router.url).toBe("/");
-//     });
-// });
+  it("should navigate from about to setup", async () => {
+    await router
+      .navigate(["about"]);
+    expect(router.url).toBe("/about");
 
-it("should", async(() => {
-  spyOn(component, "btnClick");
+    spyOn(component, "btnClick").and.callThrough();
+    const button = fixture.debugElement.nativeElement.querySelector("button");
+    button.click();
 
-  const button = fixture.debugElement.nativeElement.querySelector("button");
-  button.click();
-
-  fixture.whenStable().then(() => {
-    expect(component.btnClick).toHaveBeenCalled();
+    fixture.whenStable().then(() => {
+      expect(component.btnClick).toHaveBeenCalled();
+      expect(location.path()).toBe("/setup");
+    });
   });
-}));
+
+  it("should navigate to setup when test started", async () => {
+    component.dataService.testState.isTestStarted = true;
+
+    spyOn(component, "btnClick").and.callThrough();
+    const button = fixture.debugElement.nativeElement.querySelector("button");
+    button.click();
+
+    fixture.whenStable().then(() => {
+      expect(component.btnClick).toHaveBeenCalled();
+      expect(location.path()).toBe("/setup");
+    });
+  });
+
+  it("should navigate to setup when test started", async () => {
+    component.dataService.testState.isTestComplete = true;
+
+    spyOn(component, "btnClick").and.callThrough();
+    const button = fixture.debugElement.nativeElement.querySelector("button");
+    button.click();
+
+    fixture.whenStable().then(() => {
+      expect(component.btnClick).toHaveBeenCalled();
+      expect(location.path()).toBe("/setup");
+    });
+  });
+
+  it("should navigate to test", async () => {
+    component.dataService.testState.isTestStarted = false;
+    component.dataService.testState.isTestComplete = false;
+    await router
+      .navigate(["setup"]);
+    expect(router.url).toBe("/setup");
+
+    spyOn(component, "btnClick").and.callThrough();
+    const button = fixture.debugElement.nativeElement.querySelector("button");
+    button.click();
+
+    fixture.whenStable().then(() => {
+      expect(component.btnClick).toHaveBeenCalled();
+      expect(location.path()).toBe("/test");
+    });
+  })
 
 });
+
