@@ -6,7 +6,7 @@
     "start": "ng serve",
     "build": "ng build",
     "test": "ng test",
-    "testwatch": "ng test --watch=false --code-coverage",
+    "testwatch": "ng test --watch=true --code-coverage",
     "lint": "ng lint",
     "e2e": "ng e2e",
     "commit": "npx git-cz"
