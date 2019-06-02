@@ -148,7 +148,7 @@ it("should naviate to the Setup page and the button should show New Test when te
       expect(component.btnClick).toHaveBeenCalled();
       expect(location.path()).toBe("/test");
     });
-  })
+  });
 
 });
 
