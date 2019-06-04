@@ -4,6 +4,7 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
 import { By } from "@angular/platform-browser";
 import { DebugElement } from "@angular/core";
+import { Router, Routes } from "@angular/router";
 
 import { MinuteSecondsPipe } from "../minute-seconds.pipe";
 import { DataService } from "../data.service";
@@ -29,6 +30,7 @@ describe("TestpageComponent", () => {
   let backSpaceSpy;
   let enterNumberSpy;
   let verifyAnswerSpy;
+  let router: Router;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -52,6 +54,7 @@ describe("TestpageComponent", () => {
     fixture = TestBed.createComponent(TestpageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
+    router = TestBed.get(Router);
     // jasmine.DEFAULT_TIMEOUT_INTERVAL = 10000;
     debugElement = fixture.debugElement;
     dataService = debugElement.injector.get(DataService);
@@ -119,8 +122,41 @@ describe("TestpageComponent", () => {
       .query(By.css("button.key-enter"))
       .triggerEventHandler("click", null);
 
-    expect(verifyAnswerSpy).toHaveBeenCalled();
-    // expect(verifyAnswerSpy.returnValue).toEqual(true);
+      expect(verifyAnswerSpy).toHaveBeenCalled();
   });
+
+  it("should call not process empty answer buffer", () => {
+    // jasmine.clock().install();
+      debugElement
+        .query(By.css("button.key-enter"))
+        .triggerEventHandler("click", null);
+      expect(verifyAnswerSpy).not.toHaveBeenCalled();
+    // jasmine.clock().tick(550);
+  });
+
+  it("should redirect on test complete", () => {
+      component.dataService.testState.isTestComplete = true;
+      debugElement
+        .query(By.css("button.key-6"))
+        .triggerEventHandler("click", null);
+      debugElement
+        .query(By.css("button.key-enter"))
+        .triggerEventHandler("click", null);
+      expect(verifyAnswerSpy).toHaveBeenCalled();
+      fixture.whenStable().then(() => {
+        fixture.detectChanges();
+        expect(router.url).toBe("/result");
+      });
+  });
+
+  it("should navigate to Setup onInit if test is not complete", () => {
+    component.dataService.testState.isTestStarted = true;
+    fixture.whenStable().then(() => {
+      fixture.detectChanges();
+      expect(router.url).toBe("/setup");
+    });
+    component.ngOnInit();
+  });
+
 
 });
