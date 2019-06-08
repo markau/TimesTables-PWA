@@ -63,7 +63,7 @@ export class TestpageComponent implements OnInit, OnDestroy {
         }
       }
     } else {
-      this.dataService.enterNumberIntoAnswerBuffer(entry);
+      this.dataService.enterAnswer(entry);
     }
   };
 }

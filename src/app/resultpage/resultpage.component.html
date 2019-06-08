@@ -38,7 +38,7 @@
       <div class="mat-row" *ngIf="this.accuracyPercentage < 100">
         <div class="mat-cell">Number incorrect:</div>
         <div class="mat-cell">
-          {{this.dataService.incorrectX.length}}
+          {{this.dataService.numberOfQuestionsIncorrect()}}
         </div>
       </div>
 

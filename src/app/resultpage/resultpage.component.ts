@@ -55,7 +55,7 @@ export class ResultpageComponent implements OnInit {
         incorrectX: this.dataService.incorrectX,
         y: this.dataService.y,
         accuracyPercentage:
-          (12 - this.dataService.incorrectX.length) / 12 * 100
+          (12 - this.dataService.numberOfQuestionsIncorrect()) / this.dataService.numberOfQuestionsTotal() * 100
       };
 
       // Get previous results if any
@@ -69,14 +69,7 @@ export class ResultpageComponent implements OnInit {
       this.totalResultsOfThisType = resultsOfThisType.length + 1;
       this.accuracyPercentage = resultObject.accuracyPercentage;
 
-      // wrong answers
-      const uniqueWrongAnswerArray = Array.from(
-        new Set(this.dataService.incorrectX.map(item => item))
-      ).sort();
-      this.wrongAnswers = uniqueWrongAnswerArray.join(
-        `x${this.dataService.y} `
-      );
-      this.wrongAnswers += `x${this.dataService.y}`;
+      this.wrongAnswers = this.dataService.incorrectAnswerReport();
 
       this.isFirstAttempt = resultsOfThisType.length === 0;
 

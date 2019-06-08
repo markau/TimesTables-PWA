@@ -52,7 +52,7 @@
   </div>
 
   <div class="timer-item">
-    <div class="timer-text">{{this.dataService.completedX.length + 1}} / 12</div>
+    <div class="timer-text">{{this.dataService.numberOfQuestionsComplete()}} / {{this.dataService.numberOfQuestionsTotal()}}</div>
   </div>
 
 </mat-card>

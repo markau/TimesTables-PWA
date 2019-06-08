@@ -90,6 +90,33 @@ export class DataService {
     );
   }
 
+  // Results
+  public numberOfQuestionsTotal(): number {
+    return this.sets.length;
+  }
+  public numberOfQuestionsComplete(): number {
+    let result = 0;
+    this.sets.forEach(set => result = result + set.completedX.length);
+    return result;
+  }
+  public numberOfQuestionsIncorrect(): number {
+    let result = 0;
+    this.sets.forEach(set => result = result + set.incorrectX.length);
+    return result;
+  }
+  public incorrectAnswerReport(): string {
+    let result = "";
+    this.sets.forEach(set => {
+      if (set.incorrectX.length > 0) {
+        const uniqueSet = [...new Set(set.incorrectX)];
+        uniqueSet.sort().forEach(incorrectResult => {
+          result += `${incorrectResult}x${set.y} `;
+        });
+      }
+    });
+    return result;
+  }
+
   public verifyAnswer(): boolean {
     // Is it correct
     const computedAnswer: number = this.currentX * this.currentY;
