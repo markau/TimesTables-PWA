@@ -30,7 +30,7 @@ describe("TestsetupComponent", () => {
     fixture.detectChanges();
     debugElement = fixture.debugElement;
     dataService = debugElement.injector.get(DataService);
-    radioClickSpy = spyOn(dataService, "changeNumberSet").and.callThrough();
+    radioClickSpy = spyOn(dataService, "updateNumberSet").and.callThrough();
   });
 
   it("should create", () => {

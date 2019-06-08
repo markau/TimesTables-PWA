@@ -76,7 +76,7 @@ it("should naviate to the Setup page and the button should show Start when test 
 });
 
 it("should naviate to the Setup page and the button should show Stop when test is started", async () => {
-  component.dataService.testState.isTestStarted = true;
+  component.dataService.isTestStarted = true;
   await router
     .navigate(["setup"]);
     expect(router.url).toBe("/setup");
@@ -84,7 +84,7 @@ it("should naviate to the Setup page and the button should show Stop when test i
 });
 
 it("should naviate to the Setup page and the button should show New Test when test is completed", async () => {
-  component.dataService.testState.isTestComplete = true;
+  component.dataService.isTestComplete = true;
   await router
     .navigate(["setup"]);
     expect(router.url).toBe("/setup");
@@ -108,7 +108,7 @@ it("should naviate to the Setup page and the button should show New Test when te
   });
 
   it("should navigate to setup when test started", async () => {
-    component.dataService.testState.isTestStarted = true;
+    component.dataService.isTestStarted = true;
 
     spyOn(component, "btnClick").and.callThrough();
     const button = fixture.debugElement.nativeElement.querySelector("button");
@@ -121,7 +121,7 @@ it("should naviate to the Setup page and the button should show New Test when te
   });
 
   it("should navigate to setup when test started", async () => {
-    component.dataService.testState.isTestComplete = true;
+    component.dataService.isTestComplete = true;
 
     spyOn(component, "btnClick").and.callThrough();
     const button = fixture.debugElement.nativeElement.querySelector("button");
@@ -134,8 +134,8 @@ it("should naviate to the Setup page and the button should show New Test when te
   });
 
   it("should navigate to test", async () => {
-    component.dataService.testState.isTestStarted = false;
-    component.dataService.testState.isTestComplete = false;
+    component.dataService.isTestStarted = false;
+    component.dataService.isTestComplete = false;
     await router
       .navigate(["setup"]);
     expect(router.url).toBe("/setup");
