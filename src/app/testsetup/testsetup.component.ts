@@ -12,7 +12,7 @@ import { fadeInAnimation } from "../_animations/index";
 export class TestsetupComponent implements OnInit {
   @HostBinding("@fadeInAnimation") fadeInAnimation = "";
 
-  public selectedNumberSets = this.dataService.selectedNumberSets;
+  public selectedNumberSets = this.dataService.getSelectedNumberSets;
   public showAddToHomeScreen = false;
   private deferredPrompt: any;
 
@@ -31,7 +31,7 @@ export class TestsetupComponent implements OnInit {
   }
 
   onChange = number => {
-    this.dataService.changeNumberSet(number);
+    this.dataService.updateNumberSet(number);
   }
 
   constructor(public dataService: DataService) {}

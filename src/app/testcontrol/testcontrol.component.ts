@@ -17,9 +17,9 @@ export class TestcontrolComponent implements OnInit {
     router.events.subscribe(val => {
       if (location.path() === "/about") {
         this.buttonText = "Back";
-      } else if (this.dataService.testState.isTestStarted) {
+      } else if (this.dataService.isTestStarted) {
         this.buttonText = "Stop";
-      } else if (this.dataService.testState.isTestComplete) {
+      } else if (this.dataService.isTestComplete) {
         this.buttonText = "New Test";
       } else {
         this.buttonText = "Start";
@@ -35,10 +35,10 @@ export class TestcontrolComponent implements OnInit {
     if (this.location.path() === "/about") {
       this.router.navigateByUrl("/setup");
       this.dataService.resetTest();
-    } else if (this.dataService.testState.isTestStarted) {
+    } else if (this.dataService.isTestStarted) {
       this.router.navigateByUrl("/setup");
       this.dataService.resetTest();
-    } else if (this.dataService.testState.isTestComplete) {
+    } else if (this.dataService.isTestComplete) {
       this.router.navigateByUrl("/setup");
       this.dataService.resetTest();
     } else {

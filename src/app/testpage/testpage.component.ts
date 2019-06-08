@@ -24,13 +24,13 @@ export class TestpageComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     // If the user has inadvertently found their way here, redirect back to test setup
-    if (!this.dataService.testState.isTestStarted) {
+    if (!this.dataService.isTestStarted) {
       this.router.navigateByUrl("/setup");
     }
 
     const testTimer = timer(0, 10);
     this.subscription = testTimer.subscribe(t => {
-      this.dataService.testState.elapsedMilliSeconds = t * 10;
+      this.dataService.elapsedMilliSeconds = t * 10;
       // console.log(t * 10);
     });
   }
@@ -44,7 +44,7 @@ export class TestpageComponent implements OnInit, OnDestroy {
       this.dataService.doBackspace();
     } else if (entry === "enter") {
       // Ignore null entry
-      if (this.dataService.testState.answerBuffer.length > 0) {
+      if (this.dataService.answerBuffer.length > 0) {
         // Process answer
         const answerIsCorrect = this.dataService.verifyAnswer();
 
@@ -58,7 +58,7 @@ export class TestpageComponent implements OnInit, OnDestroy {
         }, 500);
 
         // Change navigation if test complete
-        if (this.dataService.testState.isTestComplete) {
+        if (this.dataService.isTestComplete) {
           this.router.navigateByUrl("/result");
         }
       }

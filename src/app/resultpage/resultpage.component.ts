@@ -33,7 +33,7 @@ export class ResultpageComponent implements OnInit {
 
   ngOnInit() {
     // If navigating to this page first, redirect back to test setup
-    if (!this.dataService.testState.isTestComplete) {
+    if (!this.dataService.isTestComplete) {
       this.router.navigateByUrl("/setup");
     } else {
       // Save result into session
@@ -51,17 +51,17 @@ export class ResultpageComponent implements OnInit {
 
       const resultObject = {
         date: Date.now(),
-        finalMilliSeconds: this.dataService.testState.finalMilliSeconds,
-        incorrectX: this.dataService.testState.incorrectX,
-        y: this.dataService.testState.y,
+        finalMilliSeconds: this.dataService.finalMilliSeconds,
+        incorrectX: this.dataService.incorrectX,
+        y: this.dataService.y,
         accuracyPercentage:
-          (12 - this.dataService.testState.incorrectX.length) / 12 * 100
+          (12 - this.dataService.incorrectX.length) / 12 * 100
       };
 
       // Get previous results if any
       if (currentStore.length > 0) {
         resultsOfThisType = currentStore.filter(
-          x => x.y === this.dataService.testState.y
+          x => x.y === this.dataService.y
         );
       }
 
@@ -71,12 +71,12 @@ export class ResultpageComponent implements OnInit {
 
       // wrong answers
       const uniqueWrongAnswerArray = Array.from(
-        new Set(this.dataService.testState.incorrectX.map(item => item))
+        new Set(this.dataService.incorrectX.map(item => item))
       ).sort();
       this.wrongAnswers = uniqueWrongAnswerArray.join(
-        `x${this.dataService.testState.y} `
+        `x${this.dataService.y} `
       );
-      this.wrongAnswers += `x${this.dataService.testState.y}`;
+      this.wrongAnswers += `x${this.dataService.y}`;
 
       this.isFirstAttempt = resultsOfThisType.length === 0;
 

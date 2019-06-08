@@ -1,12 +1,12 @@
 <mat-card class="question-display-container">
 
   <div class="question-text">
-    {{this.dataService.testState.x}} x {{this.dataService.testState.y}} =
+    {{this.dataService.x}} x {{this.dataService.y}} =
   </div>
 
   <div class="answer-container">
     <span class="answer">
-      {{this.dataService.testState.answerBuffer}}
+      {{this.dataService.answerBuffer}}
     </span>
     <span class="test-feedback-icon" [ngClass]="{'test-feedback-icon-animation-correct': this.showCorrectAnimation, 'test-feedback-icon-animation-incorrect': this.showIncorrectAnimation }"></span>
   </div>
@@ -47,12 +47,12 @@
   <div class="timer-item">
     <div style="display: flex; align-content: center; justify-content: center;">
       <mat-icon style="margin-right: 7px;" svgIcon="timer"></mat-icon>
-      <div class="timer-text">{{this.dataService.testState.elapsedMilliSeconds | minuteSeconds : false : true }}</div>
+      <div class="timer-text">{{this.dataService.elapsedMilliSeconds | minuteSeconds : false : true }}</div>
     </div>
   </div>
 
   <div class="timer-item">
-    <div class="timer-text">{{this.dataService.testState.completedX.length + 1}} / 12</div>
+    <div class="timer-text">{{this.dataService.completedX.length + 1}} / 12</div>
   </div>
 
 </mat-card>

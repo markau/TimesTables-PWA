@@ -2,7 +2,7 @@
   <div class="resultpage-container">
 
     <div style="margin: 1.5em; font-weight: 600;">
-      {{this.dataService.testState.y}}x test completed
+      {{this.dataService.y}}x test completed
     </div>
 
     <div class="mat-table">
@@ -13,7 +13,7 @@
         <div class="mat-cell">
           <div style="display: flex; align-content: center; justify-content: center;">
             <mat-icon *ngIf="this.isNewRecordTime" style="color: #ff6c00; margin-right: 5px;" svgIcon="hot"></mat-icon>
-            <div style="align-self: center;">{{this.dataService.testState.finalMilliSeconds|minuteSeconds}}s</div>
+            <div style="align-self: center;">{{this.dataService.finalMilliSeconds|minuteSeconds}}s</div>
           </div>
         </div>
       </div>
@@ -38,7 +38,7 @@
       <div class="mat-row" *ngIf="this.accuracyPercentage < 100">
         <div class="mat-cell">Number incorrect:</div>
         <div class="mat-cell">
-          {{this.dataService.testState.incorrectX.length}}
+          {{this.dataService.incorrectX.length}}
         </div>
       </div>
 
