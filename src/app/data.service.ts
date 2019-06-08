@@ -1,16 +1,24 @@
 import { Injectable } from "@angular/core";
+import { NumberSet } from "./models/NumberSet";
+
+type NumberSets = Array<NumberSet>;
+
+let initialNumberSet: NumberSets = [
+  new NumberSet(
+    [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    [],
+    [],
+    2
+  )
+];
 
 @Injectable()
 export class DataService {
-  constructor() {}
+  constructor() {
+  }
 
   public testState = {
-    x: 0,
-    y: 2,
-    remainingX: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
-    // remainingX: [1, 2],
-    completedX: [],
-    incorrectX: [],
+    sets: initialNumberSet,
     answerBuffer: "",
     isTestStarted: false,
     isTestComplete: false,
@@ -19,12 +27,7 @@ export class DataService {
   };
 
   public resetTest = () => {
-    this.testState.x = 0;
-    this.testState.y = 2;
-    this.testState.remainingX = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
-    // this.testState.remainingX = [1, 2];
-    this.testState.completedX = [];
-    this.testState.incorrectX = [];
+    this.testState.sets = initialNumberSet;
     this.testState.answerBuffer = "";
     this.testState.isTestStarted = false;
     this.testState.isTestComplete = false;
