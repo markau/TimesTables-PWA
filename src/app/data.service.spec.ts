@@ -20,16 +20,13 @@ describe("DataService", () => {
     "testState object should be instantiated",
     inject([DataService], (service: DataService) => {
       expect(service).toBeTruthy();
-      expect(service.currentY).toEqual(2);
     })
   );
 
   it(
     "resetTest() method should reset initial values of testState",
     inject([DataService], (service: DataService) => {
-      service.currentY = 4;
       service.resetTest();
-      expect(service.currentY).toEqual(2);
       expect(service.isTestStarted).toEqual(false);
     })
   );

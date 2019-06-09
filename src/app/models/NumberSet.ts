@@ -9,7 +9,7 @@ export class NumberSet {
     this.resetSet(y);
   }
   resetSet(y?: number) {
-    this.remainingX = [1, 2];
+    this.remainingX = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
     this.completedX = [];
     this.incorrectX = [];
     this.y = y === undefined ? defaultNumberSet : y;

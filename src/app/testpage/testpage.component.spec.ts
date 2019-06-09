@@ -74,7 +74,7 @@ describe("TestpageComponent", () => {
   });
 
   it("should load test data", () => {
-    expect(component.dataService.currentY).toEqual(2);
+    expect(component.dataService.getSelectedNumberSets()).toEqual([2]);
   });
 
   it("should render a 6 button", () => {
