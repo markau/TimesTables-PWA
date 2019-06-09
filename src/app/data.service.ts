@@ -56,7 +56,7 @@ export class DataService {
   // Public methods
   public cancelTest = (): void => {
     this.resetTest();
-  };
+  }
   public resetTest(): void {
     this.resetTestData();
   }
@@ -97,40 +97,6 @@ export class DataService {
     );
   }
 
-  // Results
-  public numberOfQuestionsTotal(): number {
-    return this.sets.length * 12;
-  }
-  public numberOfQuestionsComplete(): number {
-    let result = 0;
-    this.sets.forEach(set => (result = result + set.completedX.length));
-    return result;
-  }
-  public numberOfQuestionsIncorrect(): number {
-    let result = 0;
-    this.sets.forEach(set => (result = result + set.incorrectX.length));
-    return result;
-  }
-  public setsTestedReport(): string {
-    let result = "";
-    this.sets.forEach(set => {
-      result += `${set.y}x `;
-    });
-    return result;
-  }
-  public incorrectAnswerReport(): string {
-    let result = "";
-    this.sets.forEach(set => {
-      if (set.incorrectX.length > 0) {
-        const uniqueSet = [...new Set(set.incorrectX)];
-        uniqueSet.sort().forEach(incorrectResult => {
-          result += `${incorrectResult}x${set.y} `;
-        });
-      }
-    });
-    return result;
-  }
-
   public verifyAnswer(): boolean {
     // Is it correct
     const computedAnswer: number = this.currentX * this.currentY;
@@ -164,4 +130,47 @@ export class DataService {
 
     return isCorrect;
   }
+
+  // Results
+  public numberOfQuestionsTotal(): number {
+    return this.sets.length * 12;
+  }
+  public numberOfQuestionsComplete(): number {
+    let result = 0;
+    this.sets.forEach(set => (result = result + set.completedX.length));
+    return result;
+  }
+  public numberOfQuestionsIncorrect(): number {
+    let result = 0;
+    this.sets.forEach(set => (result = result + set.incorrectX.length));
+    return result;
+  }
+  public setsTestedArray(): Array<number> {
+    return this.sets.sort().map(set => {
+      return set.y;
+    });
+  }
+  public setsTestedReport(): string {
+    let result = "";
+    this.setsTestedArray().forEach(y => {
+      result += `${y}x `;
+    });
+    return result;
+  }
+  public incorrectAnswerReport(): string {
+    let result = "";
+    this.sets.forEach(set => {
+      if (set.incorrectX.length > 0) {
+        const uniqueSet = [...new Set(set.incorrectX)];
+        uniqueSet.sort().forEach(incorrectResult => {
+          result += `${incorrectResult}x${set.y} `;
+        });
+      }
+    });
+    return result;
+  }
+  public accuracyPercentage(): number {
+    return ((12 - this.numberOfQuestionsIncorrect()) / this.numberOfQuestionsTotal() * 100);
+  }
+
 }

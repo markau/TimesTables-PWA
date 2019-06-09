@@ -49,19 +49,19 @@ export class ResultpageComponent implements OnInit {
         currentStore = data;
       }
 
+      const setsTestedThisTest = this.dataService.setsTestedArray();
+
       const resultObject = {
         date: Date.now(),
         finalMilliSeconds: this.dataService.finalMilliSeconds,
-        incorrectX: this.dataService.incorrectX,
-        y: this.dataService.y,
-        accuracyPercentage:
-          (12 - this.dataService.numberOfQuestionsIncorrect()) / this.dataService.numberOfQuestionsTotal() * 100
+        y: this.setsTestedThisTest,
+        accuracyPercentage: this.dataService.accuracyPercentage()
       };
 
       // Get previous results if any
       if (currentStore.length > 0) {
         resultsOfThisType = currentStore.filter(
-          x => x.y === this.dataService.y
+          x => x.y === this.setsTestedThisTest
         );
       }
 
@@ -76,9 +76,9 @@ export class ResultpageComponent implements OnInit {
       if (!this.isFirstAttempt) {
         this.previousBestTime = Math.min.apply(
           Math,
-          resultsOfThisType.map(function(o) {
-            return o.finalMilliSeconds;
-          })
+          resultsOfThisType.map(result =>
+            result.finalMilliSeconds
+          )
         );
         this.isNewRecordTime =
           !this.isFirstAttempt &&
