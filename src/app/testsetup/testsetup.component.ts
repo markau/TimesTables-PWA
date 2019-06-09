@@ -12,7 +12,7 @@ import { fadeInAnimation } from "../_animations/index";
 export class TestsetupComponent implements OnInit {
   @HostBinding("@fadeInAnimation") fadeInAnimation = "";
 
-  public selectedNumberSets = this.dataService.getSelectedNumberSets;
+  public selectedNumberSets = this.dataService.getSelectedNumberSets();
   public showAddToHomeScreen = false;
   private deferredPrompt: any;
 
@@ -30,13 +30,17 @@ export class TestsetupComponent implements OnInit {
     });
   }
 
-  onChange = number => {
-    this.dataService.updateNumberSet(number);
+  onChange = (event, number) => {
+    console.log(event.option.value);
+    this.dataService.updateNumberSet(event.option.value);
   }
 
   constructor(public dataService: DataService) {}
 
   ngOnInit() {
+
+    console.log(this.selectedNumberSets);
+
     if (window.matchMedia("(display-mode: browser").matches) {
       // We are in the browser
       window.addEventListener("beforeinstallprompt", e => {
