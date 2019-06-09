@@ -1,19 +1,33 @@
 <mat-card>
   <div class="resultpage-container">
-
     <div style="margin: 1.5em; font-weight: 600;">
-      {{this.dataService.y}}x test completed
+      Test completed
     </div>
 
     <div class="mat-table">
+      <!-- Sets tested -->
+      <div class="mat-row">
+        <div class="mat-cell">Sets tested:</div>
+        <div class="mat-cell">
+          {{ this.dataService.setsTestedReport }}
+        </div>
+      </div>
 
       <!-- Best time -->
       <div class="mat-row">
         <div class="mat-cell">Time:</div>
         <div class="mat-cell">
-          <div style="display: flex; align-content: center; justify-content: center;">
-            <mat-icon *ngIf="this.isNewRecordTime" style="color: #ff6c00; margin-right: 5px;" svgIcon="hot"></mat-icon>
-            <div style="align-self: center;">{{this.dataService.finalMilliSeconds|minuteSeconds}}s</div>
+          <div
+            style="display: flex; align-content: center; justify-content: center;"
+          >
+            <mat-icon
+              *ngIf="this.isNewRecordTime"
+              style="color: #ff6c00; margin-right: 5px;"
+              svgIcon="hot"
+            ></mat-icon>
+            <div style="align-self: center;">
+              {{ this.dataService.finalMilliSeconds | minuteSeconds }}s
+            </div>
           </div>
         </div>
       </div>
@@ -21,16 +35,14 @@
       <!-- Previous best time -->
       <div class="mat-row" *ngIf="!this.isFirstAttempt">
         <div class="mat-cell">Previous best time:</div>
-        <div class="mat-cell">
-          {{this.previousBestTime|minuteSeconds}}s
-        </div>
+        <div class="mat-cell">{{ this.previousBestTime | minuteSeconds }}s</div>
       </div>
 
       <!-- Accuracy -->
       <div class="mat-row">
         <div class="mat-cell">Accuracy:</div>
         <div class="mat-cell">
-          {{ this.accuracyPercentage | number:'1.0-2' }} %
+          {{ this.accuracyPercentage | number: "1.0-2" }} %
         </div>
       </div>
 
@@ -38,7 +50,7 @@
       <div class="mat-row" *ngIf="this.accuracyPercentage < 100">
         <div class="mat-cell">Number incorrect:</div>
         <div class="mat-cell">
-          {{this.dataService.numberOfQuestionsIncorrect()}}
+          {{ this.dataService.numberOfQuestionsIncorrect() }}
         </div>
       </div>
 
@@ -46,12 +58,9 @@
       <div class="mat-row" *ngIf="this.accuracyPercentage < 100">
         <div class="mat-cell">Wrong answers:</div>
         <div class="mat-cell">
-          {{this.wrongAnswers}}
+          {{ this.wrongAnswers }}
         </div>
       </div>
-
     </div>
-
   </div>
-
 </mat-card>

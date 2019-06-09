@@ -17,35 +17,46 @@ export class DataService {
     this.resetTestData();
   }
 
-    // Private methods
-    private resetSets(): void {
-      this.sets.forEach(set => {
-        set.resetSet(set.y);
-      });
-    }
-    private areTestQuestionsRemaining(): boolean {
-      const result = this.sets.filter(set => set.remainingX.length > 0);
-      return result.length > 0;
-    }
-    private clearAnswerBuffer(): void {
-      this.answerBuffer = "";
-    }
-    private resetTestData() {
-      this.resetSets();
-      this.getQuestionPair();
-      this.clearAnswerBuffer();
-      this.isTestStarted = false;
-      this.isTestComplete = false;
-      this.elapsedMilliSeconds = 0;
-      this.finalMilliSeconds = 0;
-    }
-
-  // Public mrthods
-  public cancelTest = (): void => {
-    this.resetTest();
+  // Private methods
+  private resetSets(): void {
+    this.sets.forEach(set => {
+      set.resetSet(set.y);
+    });
+  }
+  private getSetsWithRemainingQuestions(): Array<NumberSet> {
+    return this.sets.filter(set => set.remainingX.length > 0);
+  }
+  private getRandomSetWithRemainingQuestions(): NumberSet {
+    const remainingSets = this.getSetsWithRemainingQuestions();
+    return remainingSets[Math.floor(Math.random() * remainingSets.length)];
+  }
+  private areTestQuestionsRemaining(): boolean {
+    const result = this.getSetsWithRemainingQuestions();
+    return result.length > 0;
+  }
+  private getRandomQuestion(): [number, number] {
+    const set = this.getRandomSetWithRemainingQuestions();
+    const randomX =
+      set.remainingX[Math.floor(Math.random() * set.remainingX.length)];
+    return [randomX, set.y];
+  }
+  private clearAnswerBuffer(): void {
+    this.answerBuffer = "";
+  }
+  private resetTestData() {
+    this.resetSets();
+    this.getQuestionPair();
+    this.clearAnswerBuffer();
+    this.isTestStarted = false;
+    this.isTestComplete = false;
+    this.elapsedMilliSeconds = 0;
+    this.finalMilliSeconds = 0;
   }
 
   // Public methods
+  public cancelTest = (): void => {
+    this.resetTest();
+  };
   public resetTest(): void {
     this.resetTestData();
   }
@@ -69,13 +80,9 @@ export class DataService {
     return this.sets.map(set => set.y);
   }
   public getQuestionPair(): void {
-    const randomSet: NumberSet = this.sets[Math.floor(Math.random() * this.sets.length)];
-    const randomX =
-      randomSet.remainingX[
-        Math.floor(Math.random() * randomSet.remainingX.length)
-      ];
-    this.currentX = randomX;
-    this.currentY = randomSet.y;
+    const question: [number, number] = this.getRandomQuestion();
+    this.currentX = question[0];
+    this.currentY = question[1];
   }
   public enterAnswer(answer: number): void {
     // Limit answer buffer to 3 chars
@@ -92,16 +99,23 @@ export class DataService {
 
   // Results
   public numberOfQuestionsTotal(): number {
-    return this.sets.length;
+    return this.sets.length * 12;
   }
   public numberOfQuestionsComplete(): number {
     let result = 0;
-    this.sets.forEach(set => result = result + set.completedX.length);
+    this.sets.forEach(set => (result = result + set.completedX.length));
     return result;
   }
   public numberOfQuestionsIncorrect(): number {
     let result = 0;
-    this.sets.forEach(set => result = result + set.incorrectX.length);
+    this.sets.forEach(set => (result = result + set.incorrectX.length));
+    return result;
+  }
+  public setsTestedReport(): string {
+    let result = "";
+    this.sets.forEach(set => {
+      result += `${set.y}x `;
+    });
     return result;
   }
   public incorrectAnswerReport(): string {
@@ -120,10 +134,13 @@ export class DataService {
   public verifyAnswer(): boolean {
     // Is it correct
     const computedAnswer: number = this.currentX * this.currentY;
-    const isCorrect: boolean = parseInt(this.answerBuffer, 10) === computedAnswer;
+    const isCorrect: boolean =
+      parseInt(this.answerBuffer, 10) === computedAnswer;
 
     // Find the current set we're working with
-    const thisNumberSet: NumberSet = this.sets.find(set => set.y === this.currentY);
+    const thisNumberSet: NumberSet = this.sets.find(
+      set => set.y === this.currentY
+    );
 
     if (isCorrect) {
       thisNumberSet.completedX.push(this.currentX);
@@ -147,5 +164,4 @@ export class DataService {
 
     return isCorrect;
   }
-
 }

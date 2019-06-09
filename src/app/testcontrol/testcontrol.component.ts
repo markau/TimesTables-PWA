@@ -42,8 +42,10 @@ export class TestcontrolComponent implements OnInit {
       this.router.navigateByUrl("/setup");
       this.dataService.resetTest();
     } else {
-      this.router.navigateByUrl("/test");
-      this.dataService.startTest();
+      if (this.dataService.getSelectedNumberSets().length > 0) {
+        this.router.navigateByUrl("/test");
+        this.dataService.startTest();
+      }
     }
   };
 }
