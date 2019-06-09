@@ -45,7 +45,6 @@ export class DataService {
   }
   private resetTestData() {
     this.resetSets();
-    this.getQuestionPair();
     this.clearAnswerBuffer();
     this.isTestStarted = false;
     this.isTestComplete = false;
@@ -61,6 +60,7 @@ export class DataService {
     this.resetTestData();
   }
   public startTest(): void {
+    this.getQuestionPair();
     this.isTestStarted = true;
   }
   public updateNumberSet(y: number): void {

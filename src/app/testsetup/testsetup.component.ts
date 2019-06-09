@@ -31,16 +31,12 @@ export class TestsetupComponent implements OnInit {
   }
 
   onChange = (event, number) => {
-    console.log(event.option.value);
     this.dataService.updateNumberSet(event.option.value);
   }
 
   constructor(public dataService: DataService) {}
 
   ngOnInit() {
-
-    console.log(this.selectedNumberSets);
-
     if (window.matchMedia("(display-mode: browser").matches) {
       // We are in the browser
       window.addEventListener("beforeinstallprompt", e => {

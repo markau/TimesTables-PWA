@@ -30,6 +30,8 @@ export class ResultpageComponent implements OnInit {
   public totalResultsOfThisType = 0;
   public accuracyPercentage = 0;
   public wrongAnswers = "";
+  public setsTestedThisTest = [];
+  public localStorageKeyName = "testResults-1.3";
 
   ngOnInit() {
     // If navigating to this page first, redirect back to test setup
@@ -41,36 +43,41 @@ export class ResultpageComponent implements OnInit {
     }
   }
 
-  saveToLocalStorage = function() {
-    this.localStorage.getItem("testResults").subscribe(data => {
+  compareArrays(array1: Array<number>, array2: Array<number>): boolean {
+    return array1.length === array2.length && array1.every((element, index) =>
+      element === array2[index]
+    );
+  }
+
+  saveToLocalStorage() {
+    this.localStorage.getItem(this.localStorageKeyName).subscribe(data => {
       let currentStore = [];
       let resultsOfThisType = [];
       if (data != null) {
         currentStore = data;
       }
 
-      const setsTestedThisTest = this.dataService.setsTestedArray();
+      this.accuracyPercentage = this.dataService.accuracyPercentage();
+      this.setsTestedThisTest = this.dataService.getSelectedNumberSets();
 
       const resultObject = {
         date: Date.now(),
         finalMilliSeconds: this.dataService.finalMilliSeconds,
         y: this.setsTestedThisTest,
-        accuracyPercentage: this.dataService.accuracyPercentage()
+        accuracyPercentage: this.accuracyPercentage
       };
 
       // Get previous results if any
       if (currentStore.length > 0) {
+        const z = this.setsTestedThisTest;
         resultsOfThisType = currentStore.filter(
-          x => x.y === this.setsTestedThisTest
+          x => this.compareArrays(x.y, this.setsTestedThisTest)
         );
       }
 
       this.totalResults = currentStore.length + 1;
       this.totalResultsOfThisType = resultsOfThisType.length + 1;
-      this.accuracyPercentage = resultObject.accuracyPercentage;
-
       this.wrongAnswers = this.dataService.incorrectAnswerReport();
-
       this.isFirstAttempt = resultsOfThisType.length === 0;
 
       if (!this.isFirstAttempt) {
@@ -88,7 +95,7 @@ export class ResultpageComponent implements OnInit {
       // Save this result to local storage
       currentStore.push(resultObject);
 
-      this.localStorage.setItem("testResults", currentStore).subscribe(
+      this.localStorage.setItem(this.localStorageKeyName, currentStore).subscribe(
         () => {
           // Done
         },
@@ -98,5 +105,5 @@ export class ResultpageComponent implements OnInit {
         }
       );
     });
-  };
+  }
 }
