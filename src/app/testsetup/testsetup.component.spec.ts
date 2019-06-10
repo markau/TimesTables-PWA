@@ -37,16 +37,15 @@ describe("TestsetupComponent", () => {
     expect(component).toBeTruthy();
   });
 
-  it("Button label via async() and whenStable()", async(() => {
-    const el = debugElement
-    .query(By.css(".radio-2"));
-    el.triggerEventHandler("click", 3);
-
+  it("Clicking checkbox calls service method", async(() => {
+    spyOn(component, "onChange").and.callThrough();
+    fixture.debugElement.query(By.css(".my-mat-list")).triggerEventHandler("selectionChange", { value: 3 });
     fixture.whenStable().then(() => {
       fixture.detectChanges();
-      // console.log(el.nativeElement);
-      // expect(radioClickSpy).toHaveBeenCalledWith(3);
+      expect(component.onChange).toHaveBeenCalled();
+      // expect(component.onChange).toHaveBeenCalledWith({ value: 3 });
+      // expect(dataService.updateNumberSet).toHaveBeenCalledWith(3);
     });
-    component.ngOnInit();
   }));
+
 });
