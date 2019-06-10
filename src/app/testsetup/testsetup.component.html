@@ -1,57 +1,57 @@
 <mat-card>
     <!-- prettier-ignore -->
-    <mat-selection-list class="my-mat-list" [(ngModel)]="selectedNumberSet" (selectionChange)="onChange($event.option)">
+    <mat-selection-list class="my-mat-list" [(ngModel)]="selectedNumberSets" (selectionChange)="onChange($event.option)">
         <div class="checkbox-container">
             <div class="checkbox-row">
                 <div class="checkbox-item">
                     <!-- prettier-ignore -->
-                    <mat-list-option selected="{{ this.selectedNumberSets.includes(2) }}" color="primary" class="radio-2" [value]="2"><span>2</span></mat-list-option>
+                    <mat-list-option color="primary" class="radio-2" [value]="2"><span>2</span></mat-list-option>
                     </div>
                 <div class="checkbox-item">
                     <!-- prettier-ignore -->
-                    <mat-list-option selected="{{ this.selectedNumberSets.includes(3) }}" color="primary" class="radio-3" [value]="3"><span>3</span></mat-list-option>
+                    <mat-list-option color="primary" class="radio-3" [value]="3"><span>3</span></mat-list-option>
                 </div>
                 <div class="checkbox-item">
                     <!-- prettier-ignore -->
-                    <mat-list-option selected="{{ this.selectedNumberSets.includes(4) }}" color="primary" class="radio-4" [value]="4"><span>4</span></mat-list-option>
-                </div>
-            </div>
-            <div class="checkbox-row">
-                <div class="checkbox-item">
-                    <!-- prettier-ignore -->
-                    <mat-list-option selected="{{ this.selectedNumberSets.includes(5) }}" color="primary" class="radio-5" [value]="5"><span>5</span></mat-list-option>
-                </div>
-                <div class="checkbox-item">
-                    <!-- prettier-ignore -->
-                    <mat-list-option selected="{{ this.selectedNumberSets.includes(6) }}" color="primary" class="radio-6" [value]="6"><span>6</span></mat-list-option>
-                </div>
-                <div class="checkbox-item">
-                    <!-- prettier-ignore -->
-                    <mat-list-option selected="{{ this.selectedNumberSets.includes(7) }}" color="primary" class="radio-7" [value]="7"><span>7</span></mat-list-option>
+                    <mat-list-option color="primary" class="radio-4" [value]="4"><span>4</span></mat-list-option>
                 </div>
             </div>
             <div class="checkbox-row">
                 <div class="checkbox-item">
                     <!-- prettier-ignore -->
-                    <mat-list-option selected="{{ this.selectedNumberSets.includes(8) }}" color="primary" class="radio-8" [value]="8"><span>8</span></mat-list-option>
+                    <mat-list-option color="primary" class="radio-5" [value]="5"><span>5</span></mat-list-option>
                 </div>
                 <div class="checkbox-item">
                     <!-- prettier-ignore -->
-                    <mat-list-option selected="{{ this.selectedNumberSets.includes(9) }}" color="primary" class="radio-9" [value]="9"><span>9</span></mat-list-option>
+                    <mat-list-option color="primary" class="radio-6" [value]="6"><span>6</span></mat-list-option>
                 </div>
                 <div class="checkbox-item">
                     <!-- prettier-ignore -->
-                    <mat-list-option selected="{{ this.selectedNumberSets.includes(10) }}" color="primary" class="radio-10" [value]="10"><span>10</span></mat-list-option>
+                    <mat-list-option color="primary" class="radio-7" [value]="7"><span>7</span></mat-list-option>
                 </div>
             </div>
             <div class="checkbox-row">
                 <div class="checkbox-item">
                     <!-- prettier-ignore -->
-                    <mat-list-option selected="{{ this.selectedNumberSets.includes(11) }}" color="primary" class="radio-11" [value]="11"><span>11</span></mat-list-option>
+                    <mat-list-option color="primary" class="radio-8" [value]="8"><span>8</span></mat-list-option>
                 </div>
                 <div class="checkbox-item">
                     <!-- prettier-ignore -->
-                    <mat-list-option selected="{{ this.selectedNumberSets.includes(12) }}" color="primary" class="radio-12" [value]="12"><span>12</span></mat-list-option>
+                    <mat-list-option color="primary" class="radio-9" [value]="9"><span>9</span></mat-list-option>
+                </div>
+                <div class="checkbox-item">
+                    <!-- prettier-ignore -->
+                    <mat-list-option color="primary" class="radio-10" [value]="10"><span>10</span></mat-list-option>
+                </div>
+            </div>
+            <div class="checkbox-row">
+                <div class="checkbox-item">
+                    <!-- prettier-ignore -->
+                    <mat-list-option color="primary" class="radio-11" [value]="11"><span>11</span></mat-list-option>
+                </div>
+                <div class="checkbox-item">
+                    <!-- prettier-ignore -->
+                    <mat-list-option color="primary" class="radio-12" [value]="12"><span>12</span></mat-list-option>
                 </div>
             </div>
         </div>
