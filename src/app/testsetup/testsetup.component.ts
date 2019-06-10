@@ -30,8 +30,8 @@ export class TestsetupComponent implements OnInit {
     });
   }
 
-  onChange = (event, number) => {
-    this.dataService.updateNumberSet(event.option.value);
+  onChange = (option) => {
+    this.dataService.updateNumberSet(option.value);
   }
 
   constructor(public dataService: DataService) {}

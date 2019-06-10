@@ -1,6 +1,6 @@
 <mat-card>
     <!-- prettier-ignore -->
-    <mat-selection-list class="my-mat-list" [(ngModel)]="selectedNumberSet" (selectionChange)="onChange($event)">
+    <mat-selection-list class="my-mat-list" [(ngModel)]="selectedNumberSet" (selectionChange)="onChange($event.option)">
         <div class="checkbox-container">
             <div class="checkbox-row">
                 <div class="checkbox-item">
