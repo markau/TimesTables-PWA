@@ -176,4 +176,78 @@ describe("DataService", () => {
     })
   );
 
+  it(
+    "lifecycle completes correctly",
+    inject([DataService], (service: DataService) => {
+
+      // Set some numbers
+      service.updateNumberSet(2);
+      service.updateNumberSet(3);
+      service.updateNumberSet(7);
+      expect(service.getSelectedNumberSets()).toEqual([3, 7]);
+
+      service.startTest();
+
+      for (let i = 0; i < 24; i++) {
+        const y = service.currentY;
+        const x = service.currentX;
+        const computedAnswer = x * y;
+        service.answerBuffer = computedAnswer.toString();
+        const result: boolean = service.verifyAnswer();
+        expect(result).toEqual(true);
+
+        expect(service.numberOfQuestionsComplete()).toEqual(i + 1);
+        expect(service.numberOfQuestionsIncorrect()).toEqual(0);
+        expect(service.accuracyPercentage()).toEqual(100);
+      }
+
+      expect(service.isTestComplete).toEqual(true);
+      expect(service.isTestStarted).toEqual(false);
+
+    })
+  );
+
+  it(
+    "lifecycle completes correctly with one wrong answer",
+    inject([DataService], (service: DataService) => {
+
+      // Set some numbers
+      service.updateNumberSet(2);
+      service.updateNumberSet(3);
+      service.updateNumberSet(7);
+      expect(service.getSelectedNumberSets()).toEqual([3, 7]);
+
+      service.startTest();
+
+      expect(service.isTestComplete).toEqual(false);
+      expect(service.isTestStarted).toEqual(true);
+
+      // wrong answer
+      service.answerBuffer = "999";
+      let result: boolean = service.verifyAnswer();
+      expect(result).toEqual(false);
+
+      for (let i = 0; i < 24; i++) {
+        const y = service.currentY;
+        const x = service.currentX;
+        const computedAnswer = x * y;
+        service.answerBuffer = computedAnswer.toString();
+        result = service.verifyAnswer();
+        expect(result).toEqual(true);
+
+        expect(service.numberOfQuestionsComplete()).toEqual(i + 1);
+        expect(service.numberOfQuestionsIncorrect()).toEqual(1);
+      }
+
+      expect(service.numberOfQuestionsComplete()).toEqual(24);
+      expect(service.numberOfQuestionsIncorrect()).toEqual(1);
+      expect(service.accuracyPercentage()).toEqual(95.83333333333334);
+
+      expect(service.isTestComplete).toEqual(true);
+      expect(service.isTestStarted).toEqual(false);
+
+    })
+  );
+
+
 });
