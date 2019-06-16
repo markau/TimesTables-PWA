@@ -170,7 +170,8 @@ export class DataService {
     return result;
   }
   public accuracyPercentage(): number {
-    return ((12 - this.numberOfQuestionsIncorrect()) / this.numberOfQuestionsTotal() * 100);
+    const numberOfQuestions: number = this.numberOfQuestionsTotal();
+    return ((numberOfQuestions - this.numberOfQuestionsIncorrect()) / numberOfQuestions * 100);
   }
 
 }
