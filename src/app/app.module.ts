@@ -14,7 +14,7 @@ import { environment } from "../environments/environment";
 import { MatTable } from "@angular/material/table";
 import { MatToolbarModule } from "@angular/material/toolbar";
 import { MatButtonModule } from "@angular/material/button";
-import { MatRadioModule } from "@angular/material/radio";
+import { MatListModule } from "@angular/material/list";
 import { MatCardModule } from "@angular/material/card";
 import { MatIconModule } from "@angular/material/icon";
 import { HttpClientModule } from "@angular/common/http";
@@ -57,8 +57,8 @@ const appRoutes: Routes = [
     BrowserAnimationsModule,
     MatToolbarModule,
     MatButtonModule,
-    MatRadioModule,
     MatCardModule,
+    MatListModule,
     MatIconModule,
     HttpClientModule,
     ServiceWorkerModule.register("/ngsw-worker.js", {

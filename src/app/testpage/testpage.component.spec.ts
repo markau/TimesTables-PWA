@@ -4,6 +4,7 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
 import { By } from "@angular/platform-browser";
 import { DebugElement } from "@angular/core";
+import { Router, Routes } from "@angular/router";
 
 import { MinuteSecondsPipe } from "../minute-seconds.pipe";
 import { DataService } from "../data.service";
@@ -29,6 +30,7 @@ describe("TestpageComponent", () => {
   let backSpaceSpy;
   let enterNumberSpy;
   let verifyAnswerSpy;
+  let router: Router;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -52,13 +54,14 @@ describe("TestpageComponent", () => {
     fixture = TestBed.createComponent(TestpageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
+    router = TestBed.get(Router);
     // jasmine.DEFAULT_TIMEOUT_INTERVAL = 10000;
     debugElement = fixture.debugElement;
     dataService = debugElement.injector.get(DataService);
     backSpaceSpy = spyOn(dataService, "doBackspace").and.callThrough();
     enterNumberSpy = spyOn(
       dataService,
-      "enterNumberIntoAnswerBuffer"
+      "enterAnswer"
     ).and.callThrough();
     verifyAnswerSpy = spyOn(dataService, "verifyAnswer").and.callThrough();
     // verifyAnswerSpy = spyOn(dataService, "verifyAnswer").and.returnValue(true);
@@ -71,7 +74,7 @@ describe("TestpageComponent", () => {
   });
 
   it("should load test data", () => {
-    expect(component.dataService.testState.y).toEqual(2);
+    expect(component.dataService.getSelectedNumberSets()).toEqual([2]);
   });
 
   it("should render a 6 button", () => {
@@ -95,7 +98,7 @@ describe("TestpageComponent", () => {
       .query(By.css("button.key-6"))
       .triggerEventHandler("click", null);
 
-    expect(component.dataService.testState.answerBuffer).toBe("6");
+    expect(component.dataService.answerBuffer).toBe("6");
     expect(enterNumberSpy).toHaveBeenCalledWith(6);
   });
 
@@ -107,7 +110,7 @@ describe("TestpageComponent", () => {
       .query(By.css("button.key-backspace"))
       .triggerEventHandler("click", null);
 
-    expect(component.dataService.testState.answerBuffer).toBe("");
+    expect(component.dataService.answerBuffer).toBe("");
     expect(backSpaceSpy).toHaveBeenCalled();
   });
 
@@ -119,8 +122,41 @@ describe("TestpageComponent", () => {
       .query(By.css("button.key-enter"))
       .triggerEventHandler("click", null);
 
-    expect(verifyAnswerSpy).toHaveBeenCalled();
-    // expect(verifyAnswerSpy.returnValue).toEqual(true);
+      expect(verifyAnswerSpy).toHaveBeenCalled();
   });
+
+  it("should call not process empty answer buffer", () => {
+    // jasmine.clock().install();
+      debugElement
+        .query(By.css("button.key-enter"))
+        .triggerEventHandler("click", null);
+      expect(verifyAnswerSpy).not.toHaveBeenCalled();
+    // jasmine.clock().tick(550);
+  });
+
+  it("should redirect on test complete", () => {
+      component.dataService.isTestComplete = true;
+      debugElement
+        .query(By.css("button.key-6"))
+        .triggerEventHandler("click", null);
+      debugElement
+        .query(By.css("button.key-enter"))
+        .triggerEventHandler("click", null);
+      expect(verifyAnswerSpy).toHaveBeenCalled();
+      fixture.whenStable().then(() => {
+        fixture.detectChanges();
+        expect(router.url).toBe("/result");
+      });
+  });
+
+  it("should navigate to Setup onInit if test is not complete", () => {
+    component.dataService.isTestStarted = true;
+    fixture.whenStable().then(() => {
+      fixture.detectChanges();
+      expect(router.url).toBe("/setup");
+    });
+    component.ngOnInit();
+  });
+
 
 });

@@ -1,95 +1,177 @@
 import { Injectable } from "@angular/core";
+import { NumberSet } from "./models/NumberSet";
 
 @Injectable()
 export class DataService {
-  constructor() {}
+  sets: Array<NumberSet>;
+  currentX: number;
+  currentY: number;
+  answerBuffer: string;
+  isTestStarted: boolean;
+  isTestComplete: boolean;
+  elapsedMilliSeconds: number;
+  finalMilliSeconds: number;
 
-  public testState = {
-    x: 0,
-    y: 2,
-    remainingX: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
-    // remainingX: [1, 2],
-    completedX: [],
-    incorrectX: [],
-    answerBuffer: "",
-    isTestStarted: false,
-    isTestComplete: false,
-    elapsedMilliSeconds: 0,
-    finalMilliSeconds: 0
-  };
-
-  public resetTest = () => {
-    this.testState.x = 0;
-    this.testState.y = 2;
-    this.testState.remainingX = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
-    // this.testState.remainingX = [1, 2];
-    this.testState.completedX = [];
-    this.testState.incorrectX = [];
-    this.testState.answerBuffer = "";
-    this.testState.isTestStarted = false;
-    this.testState.isTestComplete = false;
-    this.testState.elapsedMilliSeconds = 0;
-    this.testState.finalMilliSeconds = 0;
+  constructor() {
+    this.sets = [new NumberSet()];
+    this.resetTestData();
   }
 
-  public changeNumberSet = (number) => {
-    this.testState.y = number;
+  // Private methods
+  private resetSets(): void {
+    this.sets.forEach(set => {
+      set.resetSet(set.y);
+    });
+  }
+  private getSetsWithRemainingQuestions(): Array<NumberSet> {
+    return this.sets.filter(set => set.remainingX.length > 0);
+  }
+  private getRandomSetWithRemainingQuestions(): NumberSet {
+    const remainingSets = this.getSetsWithRemainingQuestions();
+    return remainingSets[Math.floor(Math.random() * remainingSets.length)];
+  }
+  private areTestQuestionsRemaining(): boolean {
+    const result = this.getSetsWithRemainingQuestions();
+    return result.length > 0;
+  }
+  private getRandomQuestion(): [number, number] {
+    const set = this.getRandomSetWithRemainingQuestions();
+    const randomX =
+      set.remainingX[Math.floor(Math.random() * set.remainingX.length)];
+    return [randomX, set.y];
+  }
+  private clearAnswerBuffer(): void {
+    this.answerBuffer = "";
+  }
+  private resetTestData() {
+    this.resetSets();
+    this.clearAnswerBuffer();
+    this.isTestStarted = false;
+    this.isTestComplete = false;
+    this.elapsedMilliSeconds = 0;
+    this.finalMilliSeconds = 0;
   }
 
-  public startTest = () => {
-    this.testState.x = this.testState.remainingX[
-      Math.floor(Math.random() * this.testState.remainingX.length)
-    ];
-    this.testState.isTestStarted = true;
-  }
-
-  public cancelTest = () => {
+  // Public methods
+  public cancelTest = (): void => {
     this.resetTest();
   }
-
-  public doBackspace = () => {
-    this.testState.answerBuffer = this.testState.answerBuffer.substring(
+  public resetTest(): void {
+    this.resetTestData();
+  }
+  public startTest(): void {
+    this.getQuestionPair();
+    this.isTestStarted = true;
+  }
+  public updateNumberSet(y: number): void {
+    const found: NumberSet = this.sets.find(item => item.y === y);
+    if (found) {
+      // Remove
+      const index = this.sets.indexOf(found);
+      const temp = [...this.sets];
+      temp.splice(index, 1);
+      this.sets = temp;
+    } else {
+      // Add
+      this.sets.push(new NumberSet(y));
+    }
+  }
+  public getSelectedNumberSets(): Array<number> {
+    return this.sets.map(set => set.y);
+  }
+  public getQuestionPair(): void {
+    const question: [number, number] = this.getRandomQuestion();
+    this.currentX = question[0];
+    this.currentY = question[1];
+  }
+  public enterAnswer(answer: number): void {
+    // Limit answer buffer to 3 chars
+    if (this.answerBuffer.length < 3) {
+      this.answerBuffer = this.answerBuffer + answer.toString();
+    }
+  }
+  public doBackspace(): void {
+    this.answerBuffer = this.answerBuffer.substring(
       0,
-      this.testState.answerBuffer.length - 1
+      this.answerBuffer.length - 1
     );
   }
 
-  public enterNumberIntoAnswerBuffer = (number) => {
-      // Add entry to buffer if it won't be exceeding 3
-      if (this.testState.answerBuffer.length < 3) {
-        this.testState.answerBuffer =
-          this.testState.answerBuffer + number;
-      }
-  }
-
-  public verifyAnswer = () => {
+  public verifyAnswer(): boolean {
     // Is it correct
-    const computedAnswer = this.testState.x * this.testState.y;
-    const isCorrect =
-      parseInt(this.testState.answerBuffer, 10) === computedAnswer;
+    const computedAnswer: number = this.currentX * this.currentY;
+    const isCorrect: boolean =
+      parseInt(this.answerBuffer, 10) === computedAnswer;
+
+    // Find the current set we're working with
+    const thisNumberSet: NumberSet = this.sets.find(
+      set => set.y === this.currentY
+    );
 
     if (isCorrect) {
-      this.testState.completedX.push(this.testState.x);
-      this.testState.remainingX.splice(
-        this.testState.remainingX.indexOf(this.testState.x),
+      thisNumberSet.completedX.push(this.currentX);
+      thisNumberSet.remainingX.splice(
+        thisNumberSet.remainingX.indexOf(this.currentX),
         1
       );
     } else {
-      this.testState.incorrectX.push(this.testState.x);
+      thisNumberSet.incorrectX.push(this.currentX);
     }
 
     // setup for next question
-    if (this.testState.remainingX.length === 0) {
-      this.testState.isTestComplete = true;
-      this.testState.isTestStarted = false;
-      this.testState.finalMilliSeconds = this.testState.elapsedMilliSeconds;
+    if (this.areTestQuestionsRemaining()) {
+      this.clearAnswerBuffer();
+      this.getQuestionPair();
     } else {
-      this.testState.answerBuffer = "";
-      this.testState.x = this.testState.remainingX[
-        Math.floor(Math.random() * this.testState.remainingX.length)
-      ];
+      this.isTestComplete = true;
+      this.isTestStarted = false;
+      this.finalMilliSeconds = this.elapsedMilliSeconds;
     }
 
     return isCorrect;
   }
+
+  // Results
+  public numberOfQuestionsTotal(): number {
+    return this.sets.length * 12;
+  }
+  public numberOfQuestionsComplete(): number {
+    let result = 0;
+    this.sets.forEach(set => (result = result + set.completedX.length));
+    return result;
+  }
+  public numberOfQuestionsIncorrect(): number {
+    let result = 0;
+    this.sets.forEach(set => (result = result + set.incorrectX.length));
+    return result;
+  }
+  public setsTestedArray(): Array<number> {
+    return this.sets.sort().map(set => {
+      return set.y;
+    });
+  }
+  public setsTestedReport(): string {
+    let result = "";
+    this.setsTestedArray().forEach(y => {
+      result += `${y}x `;
+    });
+    return result;
+  }
+  public incorrectAnswerReport(): string {
+    let result = "";
+    this.sets.forEach(set => {
+      if (set.incorrectX.length > 0) {
+        const uniqueSet = [...new Set(set.incorrectX)];
+        uniqueSet.sort().forEach(incorrectResult => {
+          result += `${incorrectResult}x${set.y} `;
+        });
+      }
+    });
+    return result;
+  }
+  public accuracyPercentage(): number {
+    const numberOfQuestions: number = this.numberOfQuestionsTotal();
+    return ((numberOfQuestions - this.numberOfQuestionsIncorrect()) / numberOfQuestions * 100);
+  }
+
 }

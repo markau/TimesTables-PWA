@@ -1,10 +1,11 @@
 # Times Tables
 
 [![Build Status](https://travis-ci.org/markau/TimesTables-PWA.svg?branch=master)](https://travis-ci.org/markau/TimesTables-PWA)
-[![codecov](https://codecov.io/gh/markau/TimesTables/branch/master/graph/badge.svg)](https://codecov.io/gh/markau/TimesTables)
+[![codecov](https://codecov.io/gh/markau/TimesTables/branch/master/graph/badge.svg)](https://codecov.io/gh/markau/TimesTables-PWA)
 [![styled with prettier](https://img.shields.io/badge/styled_with-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
+[![Known Vulnerabilities](https://snyk.io/test/github/markau/TimesTables/badge.svg?targetFile=package.json)](https://snyk.io/test/github/markau/TimesTables?targetFile=package.json)
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.8.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.0.0.
 
 ## Demo
 
