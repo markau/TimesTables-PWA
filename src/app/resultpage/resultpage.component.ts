@@ -30,10 +30,12 @@ export class ResultpageComponent implements OnInit {
   public totalResultsOfThisType = 0;
   public accuracyPercentage = 0;
   public wrongAnswers = "";
+  public setsTestedThisTest = [];
+  public localStorageKeyName = "testResults-1.3";
 
   ngOnInit() {
     // If navigating to this page first, redirect back to test setup
-    if (!this.dataService.testState.isTestComplete) {
+    if (!this.dataService.isTestComplete) {
       this.router.navigateByUrl("/setup");
     } else {
       // Save result into session
@@ -41,51 +43,49 @@ export class ResultpageComponent implements OnInit {
     }
   }
 
-  saveToLocalStorage = function() {
-    this.localStorage.getItem("testResults").subscribe(data => {
+  compareArrays(array1: Array<number>, array2: Array<number>): boolean {
+    return array1.length === array2.length && array1.every((element, index) =>
+      element === array2[index]
+    );
+  }
+
+  saveToLocalStorage() {
+    this.localStorage.getItem(this.localStorageKeyName).subscribe(data => {
       let currentStore = [];
       let resultsOfThisType = [];
       if (data != null) {
         currentStore = data;
       }
 
+      this.accuracyPercentage = this.dataService.accuracyPercentage();
+      this.setsTestedThisTest = this.dataService.getSelectedNumberSets();
+
       const resultObject = {
         date: Date.now(),
-        finalMilliSeconds: this.dataService.testState.finalMilliSeconds,
-        incorrectX: this.dataService.testState.incorrectX,
-        y: this.dataService.testState.y,
-        accuracyPercentage:
-          (12 - this.dataService.testState.incorrectX.length) / 12 * 100
+        finalMilliSeconds: this.dataService.finalMilliSeconds,
+        y: this.setsTestedThisTest,
+        accuracyPercentage: this.accuracyPercentage
       };
 
       // Get previous results if any
       if (currentStore.length > 0) {
+        const z = this.setsTestedThisTest;
         resultsOfThisType = currentStore.filter(
-          x => x.y === this.dataService.testState.y
+          x => this.compareArrays(x.y, this.setsTestedThisTest)
         );
       }
 
       this.totalResults = currentStore.length + 1;
       this.totalResultsOfThisType = resultsOfThisType.length + 1;
-      this.accuracyPercentage = resultObject.accuracyPercentage;
-
-      // wrong answers
-      const uniqueWrongAnswerArray = Array.from(
-        new Set(this.dataService.testState.incorrectX.map(item => item))
-      ).sort();
-      this.wrongAnswers = uniqueWrongAnswerArray.join(
-        `x${this.dataService.testState.y} `
-      );
-      this.wrongAnswers += `x${this.dataService.testState.y}`;
-
+      this.wrongAnswers = this.dataService.incorrectAnswerReport();
       this.isFirstAttempt = resultsOfThisType.length === 0;
 
       if (!this.isFirstAttempt) {
         this.previousBestTime = Math.min.apply(
           Math,
-          resultsOfThisType.map(function(o) {
-            return o.finalMilliSeconds;
-          })
+          resultsOfThisType.map(result =>
+            result.finalMilliSeconds
+          )
         );
         this.isNewRecordTime =
           !this.isFirstAttempt &&
@@ -95,7 +95,7 @@ export class ResultpageComponent implements OnInit {
       // Save this result to local storage
       currentStore.push(resultObject);
 
-      this.localStorage.setItem("testResults", currentStore).subscribe(
+      this.localStorage.setItem(this.localStorageKeyName, currentStore).subscribe(
         () => {
           // Done
         },
@@ -105,5 +105,5 @@ export class ResultpageComponent implements OnInit {
         }
       );
     });
-  };
+  }
 }

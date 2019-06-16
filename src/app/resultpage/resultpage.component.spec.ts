@@ -63,7 +63,7 @@ describe("ResultpageComponent", () => {
   });
 
   it("saveToLocalStorage() is called on the component", async(() => {
-    component.dataService.testState.isTestComplete = true;
+    component.dataService.isTestComplete = true;
 
     fixture.whenStable().then(() => {
       fixture.detectChanges();
@@ -73,7 +73,7 @@ describe("ResultpageComponent", () => {
   }));
 
   it("should navigate to Setup onInit if test is not complete", async(() => {
-    component.dataService.testState.isTestComplete = false;
+    component.dataService.isTestComplete = false;
 
     fixture.whenStable().then(() => {
       fixture.detectChanges();

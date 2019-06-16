@@ -61,7 +61,7 @@ describe("TestpageComponent", () => {
     backSpaceSpy = spyOn(dataService, "doBackspace").and.callThrough();
     enterNumberSpy = spyOn(
       dataService,
-      "enterNumberIntoAnswerBuffer"
+      "enterAnswer"
     ).and.callThrough();
     verifyAnswerSpy = spyOn(dataService, "verifyAnswer").and.callThrough();
     // verifyAnswerSpy = spyOn(dataService, "verifyAnswer").and.returnValue(true);
@@ -74,7 +74,7 @@ describe("TestpageComponent", () => {
   });
 
   it("should load test data", () => {
-    expect(component.dataService.testState.y).toEqual(2);
+    expect(component.dataService.getSelectedNumberSets()).toEqual([2]);
   });
 
   it("should render a 6 button", () => {
@@ -98,7 +98,7 @@ describe("TestpageComponent", () => {
       .query(By.css("button.key-6"))
       .triggerEventHandler("click", null);
 
-    expect(component.dataService.testState.answerBuffer).toBe("6");
+    expect(component.dataService.answerBuffer).toBe("6");
     expect(enterNumberSpy).toHaveBeenCalledWith(6);
   });
 
@@ -110,7 +110,7 @@ describe("TestpageComponent", () => {
       .query(By.css("button.key-backspace"))
       .triggerEventHandler("click", null);
 
-    expect(component.dataService.testState.answerBuffer).toBe("");
+    expect(component.dataService.answerBuffer).toBe("");
     expect(backSpaceSpy).toHaveBeenCalled();
   });
 
@@ -135,7 +135,7 @@ describe("TestpageComponent", () => {
   });
 
   it("should redirect on test complete", () => {
-      component.dataService.testState.isTestComplete = true;
+      component.dataService.isTestComplete = true;
       debugElement
         .query(By.css("button.key-6"))
         .triggerEventHandler("click", null);
@@ -150,7 +150,7 @@ describe("TestpageComponent", () => {
   });
 
   it("should navigate to Setup onInit if test is not complete", () => {
-    component.dataService.testState.isTestStarted = true;
+    component.dataService.isTestStarted = true;
     fixture.whenStable().then(() => {
       fixture.detectChanges();
       expect(router.url).toBe("/setup");
