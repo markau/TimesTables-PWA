@@ -5,6 +5,9 @@ language: node_js
 node_js:
   - '12.3.1'
 
+services:
+  - xvfb
+
 cache:
   directories:
     - node_modules
@@ -13,8 +16,8 @@ notifications:
   email: false
 
 # Set DISPLAY for Xvfb
-env:
-  - DISPLAY=:99.0
+# env:
+#   - DISPLAY=:99.0
 
 # Use APT Addon to install Chrome
 # addons:
@@ -27,14 +30,20 @@ env:
 addons:
     chrome: stable
 
-# Start Xvfb so you can run headless Chrome
-before_install:
-  - sh -e /etc/init.d/xvfb start
+# https://stackoverflow.com/questions/55674746/travis-sh-0-cant-open-etc-init-d-xvfb
 
-before_script:
-  - "sudo chown root /opt/google/chrome/chrome-sandbox"
-  - "sudo chmod 4755 /opt/google/chrome/chrome-sandbox"
-  - npm install -g --silent @angular/cli
+# Start Xvfb so you can run headless Chrome
+# before_install:
+#   - sh -e /etc/init.d/xvfb start
+
+# before_script:
+#   - "sudo chown root /opt/google/chrome/chrome-sandbox"
+#   - "sudo chmod 4755 /opt/google/chrome/chrome-sandbox"
+#   - npm install -g --silent @angular/cli
+
+install:
+  - npm set progress=false
+  - npm install
 
 script:
   - ng build --prod
