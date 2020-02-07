@@ -7,9 +7,9 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.0.0.
 
-## Demo
+## Production site
 
-[https://timestables.coolsmallapps.com](https://timestables.coolsmallapps.com)
+Deployed as a Progressive Web Application at [https://timestables.coolsmallapps.com](https://timestables.coolsmallapps.com)
 
 ## Development server
 
