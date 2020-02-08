@@ -5,11 +5,11 @@
 [![styled with prettier](https://img.shields.io/badge/styled_with-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
 [![Known Vulnerabilities](https://snyk.io/test/github/markau/TimesTables/badge.svg?targetFile=package.json)](https://snyk.io/test/github/markau/TimesTables?targetFile=package.json)
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.2.14.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.0.0.
 
-## Demo
+## Production site
 
-[https://timestables.coolsmallapps.com](https://timestables.coolsmallapps.com)
+Deployed as a Progressive Web Application at [https://timestables.coolsmallapps.com](https://timestables.coolsmallapps.com)
 
 ## Development server
 

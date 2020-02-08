@@ -50,7 +50,7 @@ export class ResultpageComponent implements OnInit {
   }
 
   saveToLocalStorage() {
-    this.localStorage.getItem(this.localStorageKeyName).subscribe(data => {
+    this.localStorage.getItem(this.localStorageKeyName).subscribe((data: object[]) => {
       let currentStore = [];
       let resultsOfThisType = [];
       if (data != null) {
