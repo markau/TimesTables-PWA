@@ -50,17 +50,26 @@ export class ResultpageComponent implements OnInit {
   }
 
   saveToLocalStorage() {
+
+    interface ResultObject {
+      date: number;
+      finalMilliSeconds: number;
+      y: any[];
+      accuracyPercentage: number;
+    }
+
     this.localStorage.getItem(this.localStorageKeyName).subscribe(data => {
-      let currentStore = [];
+      let currentStore: any = [];
       let resultsOfThisType = [];
       if (data != null) {
+        // currentStore = Array<ResultObject>(data["value"]);
         currentStore = data;
       }
 
       this.accuracyPercentage = this.dataService.accuracyPercentage();
       this.setsTestedThisTest = this.dataService.getSelectedNumberSets();
 
-      const resultObject = {
+      const resultObject: ResultObject = {
         date: Date.now(),
         finalMilliSeconds: this.dataService.finalMilliSeconds,
         y: this.setsTestedThisTest,
@@ -93,7 +102,7 @@ export class ResultpageComponent implements OnInit {
       }
 
       // Save this result to local storage
-      currentStore.push(resultObject);
+      currentStore.value.push(resultObject);
 
       this.localStorage.setItem(this.localStorageKeyName, currentStore).subscribe(
         () => {
