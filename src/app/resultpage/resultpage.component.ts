@@ -77,14 +77,14 @@ export class ResultpageComponent implements OnInit {
       };
 
       // Get previous results if any
-      if (currentStore.length > 0) {
+      if (currentStore.value.length > 0) {
         const z = this.setsTestedThisTest;
-        resultsOfThisType = currentStore.filter(
+        resultsOfThisType = currentStore.value.filter(
           x => this.compareArrays(x.y, this.setsTestedThisTest)
         );
       }
 
-      this.totalResults = currentStore.length + 1;
+      this.totalResults = currentStore.value.length + 1;
       this.totalResultsOfThisType = resultsOfThisType.length + 1;
       this.wrongAnswers = this.dataService.incorrectAnswerReport();
       this.isFirstAttempt = resultsOfThisType.length === 0;
