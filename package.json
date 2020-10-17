@@ -27,7 +27,7 @@
     "@angular/service-worker": "^10.1.6",
     "@ngx-pwa/local-storage": "^10.1.0",
     "core-js": "^2.5.4",
-    "rxjs": "^6.5.4",
+    "rxjs": "^6.6.3",
     "zone.js": "^0.10.3"
   },
   "devDependencies": {
