@@ -39,7 +39,7 @@ describe("TestsetupComponent", () => {
 
   it("Clicking checkbox calls service method", async(() => {
     spyOn(component, "onChange").and.callThrough();
-    fixture.debugElement.query(By.css(".my-mat-list")).triggerEventHandler("selectionChange", { value: 3 });
+    fixture.debugElement.query(By.css(".my-mat-list")).triggerEventHandler("selectionChange", { option: 3 });
     fixture.whenStable().then(() => {
       fixture.detectChanges();
       expect(component.onChange).toHaveBeenCalled();

@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, HostBinding } from "@angular/core";
+import { Component, OnInit, OnDestroy, HostBinding, NgZone } from "@angular/core";
 import { Router } from "@angular/router";
 import { DataService } from "../data.service";
 
@@ -17,7 +17,7 @@ export class TestpageComponent implements OnInit, OnDestroy {
 
   private subscription: Subscription;
 
-  constructor(private router: Router, public dataService: DataService) {}
+  constructor(private router: Router, public dataService: DataService, private zone: NgZone) {}
 
   public showCorrectAnimation = false;
   public showIncorrectAnimation = false;
@@ -25,7 +25,9 @@ export class TestpageComponent implements OnInit, OnDestroy {
   ngOnInit() {
     // If the user has inadvertently found their way here, redirect back to test setup
     if (!this.dataService.isTestStarted) {
-      this.router.navigateByUrl("/setup");
+      this.zone.run(() => {
+        this.router.navigateByUrl("/setup");
+      });
     }
 
     const testTimer = timer(0, 10);
@@ -59,7 +61,9 @@ export class TestpageComponent implements OnInit, OnDestroy {
 
         // Change navigation if test complete
         if (this.dataService.isTestComplete) {
-          this.router.navigateByUrl("/result");
+          this.zone.run(() => {
+            this.router.navigateByUrl("/result");
+          });
         }
       }
     } else {

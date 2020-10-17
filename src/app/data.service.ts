@@ -115,7 +115,9 @@ export class DataService {
         1
       );
     } else {
-      thisNumberSet.incorrectX.push(this.currentX);
+      if (thisNumberSet && thisNumberSet.incorrectX) {
+        thisNumberSet.incorrectX.push(this.currentX);
+      }
     }
 
     // setup for next question

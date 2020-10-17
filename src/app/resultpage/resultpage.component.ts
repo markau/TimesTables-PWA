@@ -1,4 +1,4 @@
-import { Component, OnInit, HostBinding } from "@angular/core";
+import { Component, OnInit, HostBinding, NgZone } from "@angular/core";
 import { Router } from "@angular/router";
 import { DataService } from "../data.service";
 
@@ -20,7 +20,8 @@ export class ResultpageComponent implements OnInit {
     private router: Router,
     public dataService: DataService,
     protected localStorage: LocalStorage,
-    private minuteSecondsPipe: MinuteSecondsPipe
+    private minuteSecondsPipe: MinuteSecondsPipe,
+    private zone: NgZone
   ) {}
 
   public isFirstAttempt = false;
@@ -36,7 +37,9 @@ export class ResultpageComponent implements OnInit {
   ngOnInit() {
     // If navigating to this page first, redirect back to test setup
     if (!this.dataService.isTestComplete) {
-      this.router.navigateByUrl("/setup");
+      this.zone.run(() => {
+        this.router.navigateByUrl("/setup");
+      });
     } else {
       // Save result into session
       this.saveToLocalStorage();
@@ -77,14 +80,18 @@ export class ResultpageComponent implements OnInit {
       };
 
       // Get previous results if any
-      if (currentStore.value.length > 0) {
+      if (currentStore.value && currentStore.value.length > 0) {
         const z = this.setsTestedThisTest;
         resultsOfThisType = currentStore.value.filter(
           x => this.compareArrays(x.y, this.setsTestedThisTest)
         );
       }
 
-      this.totalResults = currentStore.value.length + 1;
+      if (currentStore.value) {
+        this.totalResults = currentStore.value.length + 1;
+      } else {
+        this.totalResults = 1;
+      }
       this.totalResultsOfThisType = resultsOfThisType.length + 1;
       this.wrongAnswers = this.dataService.incorrectAnswerReport();
       this.isFirstAttempt = resultsOfThisType.length === 0;
@@ -102,7 +109,9 @@ export class ResultpageComponent implements OnInit {
       }
 
       // Save this result to local storage
-      currentStore.value.push(resultObject);
+      if (currentStore && currentStore.value) {
+        currentStore.value.push(resultObject);
+      }
 
       this.localStorage.setItem(this.localStorageKeyName, currentStore).subscribe(
         () => {
