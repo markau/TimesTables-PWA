@@ -1,0 +1,26 @@
+{
+  "extends": ["config:base"],
+  "timezone": "Australia/Adelaide",
+  "schedule": ["every weekend"],
+  "packageRules": [
+    {
+      "updateTypes": ["minor", "patch", "pin", "digest"],
+      "automerge": true,
+      "automergeType": "branch"
+    },
+    {
+      "groupName": "angular-framework",
+      "updateTypes": ["major"],
+      "enabled": false,
+      "packagePatterns": [
+        "^@angular/"
+      ]
+    },
+    {
+      "groupName": "@ngx-pwa/local-storage",
+      "updateTypes": ["major"],
+      "enabled": false,
+      "packageNames": ["@ngx-pwa/local-storage"]
+    }
+  ]
+}
