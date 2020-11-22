@@ -9,10 +9,18 @@
       "automergeType": "branch"
     },
     {
+      "groupName": "angular-framework",
       "updateTypes": ["major"],
-      "automerge": false,
-      "excludePackageNames": ["@ngx-pwa/local-storage"],
-      "excludePackagePatterns": ["^@angular"]
+      "enabled": false,
+      "packagePatterns": [
+        "^@angular/"
+      ]
+    },
+    {
+      "groupName": "@ngx-pwa/local-storage",
+      "updateTypes": ["major"],
+      "enabled": false,
+      "packageNames": ["@ngx-pwa/local-storage"]
     }
   ]
 }
