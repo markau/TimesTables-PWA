@@ -109,9 +109,7 @@ export class ResultpageComponent implements OnInit {
       }
 
       // Save this result to local storage
-      // if (currentStore && currentStore) {
-        currentStore.push(resultObject);
-      // }
+      currentStore.push(resultObject);
 
       this.storage.set(this.localStorageKeyName, currentStore).subscribe(
         () => {
