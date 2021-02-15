@@ -1,6 +1,6 @@
 # Times Tables
 
-[![Build Status](https://travis-ci.org/markau/TimesTables-PWA.svg?branch=master)](https://travis-ci.org/markau/TimesTables-PWA)
+[![Build Status](https://github.com/markau/TimesTables-PWA/workflows/build/badge.svg)](https://github.com/markau/TimesTables-PWA)
 [![codecov](https://codecov.io/gh/markau/TimesTables-PWA/branch/master/graph/badge.svg)](https://codecov.io/gh/markau/TimesTables-PWA)
 [![styled with prettier](https://img.shields.io/badge/styled_with-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
 [![Known Vulnerabilities](https://snyk.io/test/github/markau/TimesTables/badge.svg?targetFile=package.json)](https://snyk.io/test/github/markau/TimesTables?targetFile=package.json)
