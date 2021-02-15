@@ -80,15 +80,15 @@ export class ResultpageComponent implements OnInit {
       };
 
       // Get previous results if any
-      if (currentStore.value && currentStore.value.length > 0) {
+      if (currentStore && currentStore.length > 0) {
         const z = this.setsTestedThisTest;
-        resultsOfThisType = currentStore.value.filter(
+        resultsOfThisType = currentStore.filter(
           x => this.compareArrays(x.y, this.setsTestedThisTest)
         );
       }
 
-      if (currentStore.value) {
-        this.totalResults = currentStore.value.length + 1;
+      if (currentStore) {
+        this.totalResults = currentStore.length + 1;
       } else {
         this.totalResults = 1;
       }
@@ -109,9 +109,9 @@ export class ResultpageComponent implements OnInit {
       }
 
       // Save this result to local storage
-      if (currentStore && currentStore.value) {
-        currentStore.value.push(resultObject);
-      }
+      // if (currentStore && currentStore) {
+        currentStore.push(resultObject);
+      // }
 
       this.storage.set(this.localStorageKeyName, currentStore).subscribe(
         () => {
