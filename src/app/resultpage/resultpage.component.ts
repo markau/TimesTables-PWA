@@ -4,7 +4,7 @@ import { DataService } from "../data.service";
 
 import { fadeInAnimation } from "../_animations/index";
 
-import { LocalStorage } from "@ngx-pwa/local-storage";
+import { StorageMap } from "@ngx-pwa/local-storage";
 import { MinuteSecondsPipe } from "../minute-seconds.pipe";
 
 @Component({
@@ -19,7 +19,7 @@ export class ResultpageComponent implements OnInit {
   constructor(
     private router: Router,
     public dataService: DataService,
-    protected localStorage: LocalStorage,
+    private storage: StorageMap,
     private minuteSecondsPipe: MinuteSecondsPipe,
     private zone: NgZone
   ) {}
@@ -61,7 +61,7 @@ export class ResultpageComponent implements OnInit {
       accuracyPercentage: number;
     }
 
-    this.localStorage.getItem(this.localStorageKeyName).subscribe(data => {
+    this.storage.get(this.localStorageKeyName).subscribe(data => {
       let currentStore: any = [];
       let resultsOfThisType = [];
       if (data != null) {
@@ -113,7 +113,7 @@ export class ResultpageComponent implements OnInit {
         currentStore.value.push(resultObject);
       }
 
-      this.localStorage.setItem(this.localStorageKeyName, currentStore).subscribe(
+      this.storage.set(this.localStorageKeyName, currentStore).subscribe(
         () => {
           // Done
         },
