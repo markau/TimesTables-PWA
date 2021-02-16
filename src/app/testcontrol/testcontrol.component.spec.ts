@@ -97,12 +97,10 @@ it("should naviate to the Setup page and the button should show New Test when te
       .navigate(["about"]);
     expect(router.url).toBe("/about");
 
-    spyOn(component, "btnClick").and.callThrough();
     const button = fixture.debugElement.nativeElement.querySelector("button");
     button.click();
 
     fixture.whenStable().then(() => {
-      expect(component.btnClick).toHaveBeenCalled();
       expect(location.path()).toBe("/setup");
     });
   });
@@ -110,12 +108,10 @@ it("should naviate to the Setup page and the button should show New Test when te
   it("should navigate to setup when test started", async () => {
     component.dataService.isTestStarted = true;
 
-    spyOn(component, "btnClick").and.callThrough();
     const button = fixture.debugElement.nativeElement.querySelector("button");
     button.click();
 
     fixture.whenStable().then(() => {
-      expect(component.btnClick).toHaveBeenCalled();
       expect(location.path()).toBe("/setup");
     });
   });
@@ -123,12 +119,10 @@ it("should naviate to the Setup page and the button should show New Test when te
   it("should navigate to setup when test re-started", async () => {
     component.dataService.isTestComplete = true;
 
-    spyOn(component, "btnClick").and.callThrough();
     const button = fixture.debugElement.nativeElement.querySelector("button");
     button.click();
 
     fixture.whenStable().then(() => {
-      expect(component.btnClick).toHaveBeenCalled();
       expect(location.path()).toBe("/setup");
     });
   });
@@ -140,12 +134,10 @@ it("should naviate to the Setup page and the button should show New Test when te
       .navigate(["setup"]);
     expect(router.url).toBe("/setup");
 
-    spyOn(component, "btnClick").and.callThrough();
     const button = fixture.debugElement.nativeElement.querySelector("button");
     button.click();
 
     fixture.whenStable().then(() => {
-      expect(component.btnClick).toHaveBeenCalled();
       expect(location.path()).toBe("/test");
     });
   });
