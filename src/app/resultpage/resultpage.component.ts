@@ -4,7 +4,7 @@ import { DataService } from "../data.service";
 
 import { fadeInAnimation } from "../_animations/index";
 
-import { LocalStorage } from "@ngx-pwa/local-storage";
+import { StorageMap } from "@ngx-pwa/local-storage";
 import { MinuteSecondsPipe } from "../minute-seconds.pipe";
 
 @Component({
@@ -19,7 +19,7 @@ export class ResultpageComponent implements OnInit {
   constructor(
     private router: Router,
     public dataService: DataService,
-    protected localStorage: LocalStorage,
+    private storage: StorageMap,
     private minuteSecondsPipe: MinuteSecondsPipe,
     private zone: NgZone
   ) {}
@@ -61,7 +61,7 @@ export class ResultpageComponent implements OnInit {
       accuracyPercentage: number;
     }
 
-    this.localStorage.getItem(this.localStorageKeyName).subscribe(data => {
+    this.storage.get(this.localStorageKeyName).subscribe(data => {
       let currentStore: any = [];
       let resultsOfThisType = [];
       if (data != null) {
@@ -80,15 +80,15 @@ export class ResultpageComponent implements OnInit {
       };
 
       // Get previous results if any
-      if (currentStore.value && currentStore.value.length > 0) {
+      if (currentStore && currentStore.length > 0) {
         const z = this.setsTestedThisTest;
-        resultsOfThisType = currentStore.value.filter(
+        resultsOfThisType = currentStore.filter(
           x => this.compareArrays(x.y, this.setsTestedThisTest)
         );
       }
 
-      if (currentStore.value) {
-        this.totalResults = currentStore.value.length + 1;
+      if (currentStore) {
+        this.totalResults = currentStore.length + 1;
       } else {
         this.totalResults = 1;
       }
@@ -109,11 +109,9 @@ export class ResultpageComponent implements OnInit {
       }
 
       // Save this result to local storage
-      if (currentStore && currentStore.value) {
-        currentStore.value.push(resultObject);
-      }
+      currentStore.push(resultObject);
 
-      this.localStorage.setItem(this.localStorageKeyName, currentStore).subscribe(
+      this.storage.set(this.localStorageKeyName, currentStore).subscribe(
         () => {
           // Done
         },

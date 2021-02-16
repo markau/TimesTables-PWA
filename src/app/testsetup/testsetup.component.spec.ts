@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { ComponentFixture, TestBed, waitForAsync } from "@angular/core/testing";
 import { CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { By } from "@angular/platform-browser";
@@ -15,7 +15,7 @@ describe("TestsetupComponent", () => {
   let dataService: DataService;
   let radioClickSpy;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [BrowserAnimationsModule],
       declarations: [TestsetupComponent],
@@ -37,7 +37,7 @@ describe("TestsetupComponent", () => {
     expect(component).toBeTruthy();
   });
 
-  it("Clicking checkbox calls service method", async(() => {
+  it("Clicking checkbox calls service method", waitForAsync(() => {
     spyOn(component, "onChange").and.callThrough();
     fixture.debugElement.query(By.css(".my-mat-list")).triggerEventHandler("selectionChange", { option: 3 });
     fixture.whenStable().then(() => {
