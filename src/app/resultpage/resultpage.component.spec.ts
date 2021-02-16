@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { ComponentFixture, TestBed, waitForAsync } from "@angular/core/testing";
 import { RouterTestingModule } from "@angular/router/testing";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
@@ -30,7 +30,7 @@ describe("ResultpageComponent", () => {
   let saveToLocalStorageSpy;
   let router: Router;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
         RouterTestingModule.withRoutes(appRoutes),
@@ -62,7 +62,7 @@ describe("ResultpageComponent", () => {
     expect(component).toBeTruthy();
   });
 
-  it("saveToLocalStorage() is called on the component", async(() => {
+  it("saveToLocalStorage() is called on the component", waitForAsync(() => {
     component.dataService.isTestComplete = true;
 
     fixture.whenStable().then(() => {
@@ -72,7 +72,7 @@ describe("ResultpageComponent", () => {
     component.ngOnInit();
   }));
 
-  it("should navigate to Setup onInit if test is not complete", async(() => {
+  it("should navigate to Setup onInit if test is not complete", waitForAsync(() => {
     component.dataService.isTestComplete = false;
 
     fixture.whenStable().then(() => {
