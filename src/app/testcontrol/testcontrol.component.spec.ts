@@ -120,7 +120,7 @@ it("should naviate to the Setup page and the button should show New Test when te
     });
   });
 
-  it("should navigate to setup when test started", async () => {
+  it("should navigate to setup when test re-started", async () => {
     component.dataService.isTestComplete = true;
 
     spyOn(component, "btnClick").and.callThrough();
