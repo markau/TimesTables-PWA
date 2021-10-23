@@ -18,7 +18,7 @@ body {
   height: calc(100vh - 74px); // to allow for the url bar in chrome
   box-sizing: border-box;
   margin: 0 auto;
-  background-color: hsla(227, 20, 92, 1);
+  background-color: hsla(227, 20%, 92%, 1%);
 }
 
 @media all and (display-mode: standalone) {
@@ -97,7 +97,7 @@ mat-card {
 }
 
 .info-container {
-  background-color: hsl(233, 20, 96) !important;
+  background-color: hsl(233, 20%, 96%) !important;
   display: flex;
   flex-direction: column;
   a {
