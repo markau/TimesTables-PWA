@@ -1,88 +1,30 @@
-# This is a basic workflow to help you get started with Actions
+name: CI Build
 
-name: CI
-
-# Controls when the action will run. 
-on:
-  # Triggers the workflow on push or pull request events but only for the develop branch
+on: 
   push:
-    branches: [ develop ]
-  pull_request:
-    branches: [ develop ]
+    branches: 
+      - develop
 
-  # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
-
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
   build:
-    # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v2
+    - name: Get latest code
+      uses: actions/checkout@v2.3.2
 
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo Hello, world!
+    - name: Use Node.js 14 LTS
+      uses: actions/setup-node@v2
+      with:
+        node-version: '14'
+      
+    - name: Install NPM Modules
+      run: npm install
 
-      # Runs a set of commands using the runners shell
-      - name: Build
-        run: |
-          sudo: false
+    - name: Build Project
+      # run: npm run build
+      run: ng build --prod
 
-          language: node_js
-
-          node_js:
-            - '14.18.1'
-
-          services:
-            - xvfb
-
-          cache:
-            directories:
-              - node_modules
-
-          notifications:
-            email: false
-
-          # Set DISPLAY for Xvfb
-          # env:
-          #   - DISPLAY=:99.0
-
-          # Use APT Addon to install Chrome
-          # addons:
-          #   apt:
-          #     sources:
-          #       - google-chrome
-          #     packages:
-          #       - google-chrome-stable
-
-          addons:
-              chrome: stable
-
-          # https://stackoverflow.com/questions/55674746/travis-sh-0-cant-open-etc-init-d-xvfb
-
-          # Start Xvfb so you can run headless Chrome
-          # before_install:
-          #   - sh -e /etc/init.d/xvfb start
-
-          # before_script:
-          #   - "sudo chown root /opt/google/chrome/chrome-sandbox"
-          #   - "sudo chmod 4755 /opt/google/chrome/chrome-sandbox"
-          #   - npm install -g --silent @angular/cli
-
-          install:
-            - npm set progress=false
-            - npm install
-
-          script:
-            - ng build --prod
-            - ng test --code-coverage --watch=false
-
-          after_success:
-            - bash <(curl -s https://codecov.io/bash)
-
+    - name: Run Tests
+      run: ng test --code-coverage --watch=false
+      after_success: bash <(curl -s https://codecov.io/bash)
