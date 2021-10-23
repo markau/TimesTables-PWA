@@ -17,7 +17,7 @@ export class TestpageComponent implements OnInit, OnDestroy {
 
   private subscription: Subscription;
 
-  constructor(private router: Router, public dataService: DataService, private zone: NgZone) {}
+  constructor(private router: Router, public dataService: DataService, private zone: NgZone) { }
 
   public showCorrectAnimation = false;
   public showIncorrectAnimation = false;
@@ -30,10 +30,13 @@ export class TestpageComponent implements OnInit, OnDestroy {
       });
     }
 
-    const testTimer = timer(0, 10);
-    this.subscription = testTimer.subscribe(t => {
-      this.dataService.elapsedMilliSeconds = t * 10;
-      // console.log(t * 10);
+    // Calculate elapsed milliseconds of test.
+    const startDate = new Date();
+    const testTimer = timer(0, 1000);
+    this.subscription = testTimer.subscribe(timerEvent => {
+      let ms = Math.abs(new Date().getTime() - new Date(startDate).getTime());
+      this.dataService.elapsedMilliSeconds = ms;
+      // console.log(ms, timerEvent);
     });
   }
 
@@ -41,7 +44,7 @@ export class TestpageComponent implements OnInit, OnDestroy {
     this.subscription.unsubscribe();
   }
 
-  btnClick = function(entry) {
+  btnClick = function (entry) {
     if (entry === "del") {
       this.dataService.doBackspace();
     } else if (entry === "enter") {
