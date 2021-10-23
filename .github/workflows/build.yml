@@ -39,4 +39,4 @@ jobs:
         npm run build:prod
         npm run test:cov
 
-    - uses: codecov/codecov-action@v1
+    - uses: codecov/codecov-action@v2
