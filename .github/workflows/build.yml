@@ -2,7 +2,7 @@ name: build
 
 on:
   push:
-    branches: [ develop, master, feature/angular-11 ]
+    branches: [ develop, master ]
   pull_request:
     branches: [ develop, master ]
 
@@ -14,7 +14,7 @@ jobs:
     strategy:
       matrix:
         # node-version: [10.x, 12.x, 14.x, 15.x]
-        node-version: [12.x]
+        node-version: [14.x]
 
     steps:
     - uses: actions/checkout@v2
@@ -39,4 +39,4 @@ jobs:
         npm run build:prod
         npm run test:cov
 
-    - uses: codecov/codecov-action@v1
+    - uses: codecov/codecov-action@v2
