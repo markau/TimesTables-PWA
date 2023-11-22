@@ -37,7 +37,7 @@
     "@angular/cli": "12.2.16",
     "@angular/compiler-cli": "12.2.16",
     "@angular/language-service": "12.2.16",
-    "@types/jasmine": "3.10.3",
+    "@types/jasmine": "3.10.18",
     "@types/jasminewd2": "2.0.8",
     "@types/node": "16.11.22",
     "codecov": "3.8.2",
